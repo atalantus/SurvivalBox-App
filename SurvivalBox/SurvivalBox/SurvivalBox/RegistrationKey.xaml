@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SurvivalBox"
+             x:Class="SurvivalBox.RegistrationKey"
+             Title="Registration Key">
+
+    <StackLayout Padding="0,10,0,50">
+        <Label Text="SurvivalBox" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Start"/>
+
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="30,0">
+            <Label Text="Registration Key"/>
+            <Entry x:Name="registrationKey" Text="0000 TEST 9999 AFFE"/>
+        </StackLayout>
+
+        <Button x:Name="activateBtn" Text="Activate" VerticalOptions="End" Clicked="OnActivate" HeightRequest="50" WidthRequest="100" HorizontalOptions="Center"/>
+    </StackLayout>
+
+</ContentPage>
