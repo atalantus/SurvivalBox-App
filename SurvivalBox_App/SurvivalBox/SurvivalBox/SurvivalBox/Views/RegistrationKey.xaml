@@ -5,20 +5,26 @@
              Title="Registration Key">
     <ContentPage.Content>
 
-        <StackLayout Padding="0,10,0,50">
-            <Label Text="Welcome" HorizontalOptions="Center" VerticalOptions="Start" Style="{StaticResource H01}"/>
+        <StackLayout Padding="20,10,20,50">
 
-            <StackLayout VerticalOptions="CenterAndExpand" Margin="50,0" WidthRequest="300" HorizontalOptions="Center">
-                <Label Text="Please enter your Registration Key:" Style="{StaticResource H03}"/>
+            <StackLayout VerticalOptions="Start">
+                <Label Text="Welcome" Margin="0,0,0,25" HorizontalOptions="Center" VerticalOptions="Start" Style="{StaticResource H01}"/>
+                <Label Text="Please enter your Registration Key below." Margin="0,0,0,10" Style="{StaticResource H05}"/>
+            </StackLayout>
+
+            <StackLayout VerticalOptions="CenterAndExpand">
                 <Entry x:Name="RegKey" Placeholder="0000-TEST-9999-AFFE"/>
             </StackLayout>
 
-            <Button x:Name="ActivateBtn" Text="Activate" Clicked="ActivateBtn_OnClicked" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="50" WidthRequest="125" Margin="0,0,0,10" Style="{StaticResource PrimaryBtn}"/>
-            <Label x:Name="GotAccountLbl" Text="Already got an account?" HorizontalOptions="Center" Style="{StaticResource LinkLbl}">
-                <Label.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
-                </Label.GestureRecognizers>
-            </Label>
+            <StackLayout VerticalOptions="End">
+                <Button x:Name="ActivateBtn" Text="Activate" Clicked="ActivateBtn_OnClicked" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="50" WidthRequest="125" Margin="0,0,0,10" Style="{StaticResource PrimaryBtn}"/>
+                <Label x:Name="GotAccountLbl" Text="Already got an account?" HorizontalOptions="Center" VerticalOptions="End" Style="{StaticResource LinkLbl}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+
         </StackLayout>
 
     </ContentPage.Content>

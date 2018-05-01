@@ -9,13 +9,11 @@
 
             <StackLayout VerticalOptions="CenterAndExpand" Spacing="10" WidthRequest="300" HorizontalOptions="Center">
                 <StackLayout>
-                    <Label Text="E-Mail adress:" Style="{StaticResource H03}"/>
-                    <Entry x:Name="EMailAdress" Placeholder="E-mail adress"/>
+                    <Entry x:Name="EMailAdress" Placeholder="E-mail"/>
                     <Label x:Name="EMailAdressFeedback" TextColor="DarkRed"></Label>
                 </StackLayout>
                 <StackLayout>
-                    <Label Text="Password:" Style="{StaticResource H03}"/>
-                    <Entry x:Name="Password" Placeholder="Password"/>
+                    <Entry x:Name="Password" IsPassword="True" Placeholder="Password"/>
                     <Label x:Name="PasswordFeedback" TextColor="DarkRed"></Label>
                 </StackLayout>
             </StackLayout>
