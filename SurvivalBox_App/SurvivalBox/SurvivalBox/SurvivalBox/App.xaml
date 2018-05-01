@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SurvivalBox.App">
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- Header01 -->
+            <Style x:Key="H01" TargetType="Label">
+                <Setter Property="FontSize" Value="40"></Setter>
+                <Setter Property="FontAttributes" Value="Bold"></Setter>
+            </Style>
+            
+            <!-- Header03 -->
+            <Style x:Key="H03" TargetType="Label">
+                <Setter Property="FontSize" Value="22"></Setter>
+            </Style>
+            
+            <!-- PrimaryBtn -->
+            <Style x:Key="PrimaryBtn" TargetType="Button">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="BackgroundColor" Value="Accent"></Setter>
+            </Style>
+            
+            <!-- LinkLbl -->
+            <Style x:Key="LinkLbl" TargetType="Label">
+                <Setter Property="TextColor" Value="Accent"></Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

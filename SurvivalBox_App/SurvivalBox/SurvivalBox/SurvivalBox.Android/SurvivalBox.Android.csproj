@@ -3,12 +3,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{509EA080-0BB0-426D-8C7D-FF4AF72F60F1}</ProjectGuid>
+    <ProjectGuid>{223ED2D9-74F5-4CEF-8C75-1139DE389CB4}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <RootNamespace>SurvivalBox.Droid</RootNamespace>
     <AssemblyName>SurvivalBox.Android</AssemblyName>
-    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -82,7 +82,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SurvivalBox\SurvivalBox.csproj">
-      <Project>{A5ED1924-E769-4407-890E-B412318ECEA7}</Project>
+      <Project>{627F4E13-EFCE-4DA5-A2E8-17B2629A24FF}</Project>
       <Name>SurvivalBox</Name>
     </ProjectReference>
   </ItemGroup>

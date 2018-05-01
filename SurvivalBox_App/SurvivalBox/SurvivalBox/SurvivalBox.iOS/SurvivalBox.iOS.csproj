@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{A7506D18-4125-4716-ABAF-4715A5EF02BD}</ProjectGuid>
+    <ProjectGuid>{EF916F31-A117-41EA-90C2-70214A8483B8}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
     <RootNamespace>SurvivalBox.iOS</RootNamespace>
@@ -124,7 +124,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\SurvivalBox\SurvivalBox.csproj">
-      <Project>{A5ED1924-E769-4407-890E-B412318ECEA7}</Project>
+      <Project>{627F4E13-EFCE-4DA5-A2E8-17B2629A24FF}</Project>
       <Name>SurvivalBox</Name>
     </ProjectReference>
   </ItemGroup>

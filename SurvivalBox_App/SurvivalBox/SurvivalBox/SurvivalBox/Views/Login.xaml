@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SurvivalBox.Views.Login"
+             Title="Login">
+    <ContentPage.Content>
+        <StackLayout Padding="20,10,20,50">
+            <Label Text="Login" HorizontalOptions="Center" VerticalOptions="Start" Style="{StaticResource H01}"/>
+
+            <StackLayout VerticalOptions="CenterAndExpand" Spacing="10" WidthRequest="300" HorizontalOptions="Center">
+                <StackLayout>
+                    <Label Text="E-Mail adress:" Style="{StaticResource H03}"/>
+                    <Entry x:Name="EMailAdress" Placeholder="E-mail adress"/>
+                    <Label x:Name="EMailAdressFeedback" TextColor="DarkRed"></Label>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Password:" Style="{StaticResource H03}"/>
+                    <Entry x:Name="Password" Placeholder="Password"/>
+                    <Label x:Name="PasswordFeedback" TextColor="DarkRed"></Label>
+                </StackLayout>
+            </StackLayout>
+
+            <Button x:Name="LoginBtn" Text="Login" Clicked="LoginBtn_OnClicked" HorizontalOptions="Center" VerticalOptions="End" HeightRequest="50" WidthRequest="125" Margin="0,0,0,10" Style="{StaticResource PrimaryBtn}"/>
+            <Label x:Name="ForgotPwLbl" Text="Forgot your Password?" HorizontalOptions="Center" Style="{StaticResource LinkLbl}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_OnTapped" NumberOfTapsRequired="1"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

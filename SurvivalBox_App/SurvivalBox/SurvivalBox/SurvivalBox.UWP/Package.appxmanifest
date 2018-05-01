@@ -7,15 +7,15 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="9108b173-1b46-4687-b061-1c16e656d05c"
-    Publisher="CN=cb92f875-e6f5-44a3-8cbf-93fb96e8bcda"
+    Name="b15aec76-92f3-41b2-b03e-ad59a0ab526a"
+    Publisher="CN=1fdb3ab8-07a1-4a76-86d7-16173e159cc5"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>SurvivalBox.UWP</DisplayName>
-    <PublisherDisplayName>cb92f875-e6f5-44a3-8cbf-93fb96e8bcda</PublisherDisplayName>
+    <PublisherDisplayName>1fdb3ab8-07a1-4a76-86d7-16173e159cc5</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

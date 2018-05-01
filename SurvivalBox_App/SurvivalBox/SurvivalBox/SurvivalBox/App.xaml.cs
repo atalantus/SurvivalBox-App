@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using SurvivalBox.Views;
 using Xamarin.Forms;
 
 namespace SurvivalBox
@@ -13,7 +13,8 @@ namespace SurvivalBox
 		{
 			InitializeComponent();
 
-			MainPage = new SurvivalBox.RegistrationKey();
+            //TODO: Check for saved login data
+			MainPage = new NavigationPage(new RegistrationKey());
 		}
 
 		protected override void OnStart ()
