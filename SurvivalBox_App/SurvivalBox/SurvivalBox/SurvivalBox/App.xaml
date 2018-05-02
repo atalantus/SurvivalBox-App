@@ -15,11 +15,6 @@
             <Style x:Key="H04" TargetType="Label">
                 <Setter Property="FontSize" Value="20"></Setter>
             </Style>
-            
-            <!-- Header05 -->
-            <Style x:Key="H05" TargetType="Label">
-                <Setter Property="FontSize" Value="20"></Setter>
-            </Style>
 
             <!-- PrimaryBtn -->
             <Style x:Key="PrimaryBtn" TargetType="Button">

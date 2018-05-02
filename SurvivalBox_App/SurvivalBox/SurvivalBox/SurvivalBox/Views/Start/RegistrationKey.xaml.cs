@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace SurvivalBox.Views
+namespace SurvivalBox.Views.Start
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RegistrationKey : ContentPage
 	{
-		public RegistrationKey ()
+		public RegistrationKey()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 		}
 
 	    private async void ActivateBtn_OnClicked(object sender, EventArgs e)
@@ -33,11 +32,6 @@ namespace SurvivalBox.Views
 	                break;
 	        }
         }
-
-	    private async void TapGestureRecognizer_OnTapped(object sender, EventArgs e)
-	    {
-	        await Navigation.PushAsync(new Login());
-	    }
 
         /// <summary>
         /// Checks if the Registration Key is valid

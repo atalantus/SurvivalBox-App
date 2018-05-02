@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SurvivalBox.Views;
+using SurvivalBox.Views.Start;
 using Xamarin.Forms;
 
 namespace SurvivalBox
