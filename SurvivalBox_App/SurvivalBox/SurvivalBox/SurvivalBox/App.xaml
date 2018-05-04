@@ -1,32 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
+<prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
              x:Class="SurvivalBox.App">
-    <Application.Resources>
-        <ResourceDictionary>
+	<Application.Resources>
+	    <ResourceDictionary>
 
-            <!-- Header01 -->
-            <Style x:Key="H01" TargetType="Label">
+	        <!-- Header01 -->
+	        <Style x:Key="H01" TargetType="Label">
                 <Setter Property="FontSize" Value="40"></Setter>
-                <Setter Property="FontAttributes" Value="Bold"></Setter>
-            </Style>
-            
-            <!-- Header04 -->
-            <Style x:Key="H04" TargetType="Label">
-                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
             </Style>
 
-            <!-- PrimaryBtn -->
-            <Style x:Key="PrimaryBtn" TargetType="Button">
-                <Setter Property="FontSize" Value="20"></Setter>
-                <Setter Property="BackgroundColor" Value="Accent"></Setter>
-            </Style>
-            
-            <!-- LinkLbl -->
-            <Style x:Key="LinkLbl" TargetType="Label">
-                <Setter Property="TextColor" Value="Accent"></Setter>
+	        <!-- Header04 -->
+	        <Style x:Key="H04" TargetType="Label">
+	            <Setter Property="FontSize" Value="20"></Setter>
+	            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
             </Style>
 
-        </ResourceDictionary>
+	        <!-- PrimaryBtn -->
+	        <Style x:Key="PrimaryBtn" TargetType="Button">
+	            <Setter Property="FontSize" Value="20"></Setter>
+	            <Setter Property="BackgroundColor" Value="Accent"></Setter>
+	        </Style>
+
+	        <!-- LinkLbl -->
+	        <Style x:Key="LinkLbl" TargetType="Label">
+	            <Setter Property="TextColor" Value="Accent"></Setter>
+	        </Style>
+
+	    </ResourceDictionary>
     </Application.Resources>
-</Application>
+</prism:PrismApplication>

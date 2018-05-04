@@ -1,36 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Prism;
+using Prism.Ioc;
+using SurvivalBox.ViewModels;
 using SurvivalBox.Views;
-using SurvivalBox.Views.Start;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using Prism.Unity;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SurvivalBox
 {
-	public partial class App : Application
-	{
-		public App ()
-		{
-			InitializeComponent();
+    public partial class App : PrismApplication
+    {
+        /* 
+         * The Xamarin Forms XAML Previewer in Visual Studio uses System.Activator.CreateInstance.
+         * This imposes a limitation in which the App class must have a default constructor. 
+         * App(IPlatformInitializer initializer = null) cannot be handled by the Activator.
+         */
+        public App() : this(null) { }
 
-            //TODO: Check for saved login data
-			MainPage = new NavigationPage(new RegistrationKey());
-		}
+        public App(IPlatformInitializer initializer) : base(initializer) { }
 
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
-		}
+        protected override async void OnInitialized()
+        {
+            InitializeComponent();
 
-		protected override void OnSleep ()
-		{
-			// Handle when your app sleeps
-		}
+            await NavigationService.NavigateAsync("WelcomeCarousel");
+        }
 
-		protected override void OnResume ()
-		{
-			// Handle when your app resumes
-		}
-	}
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<WelcomeCarousel>();
+            containerRegistry.RegisterForNavigation<RegKey>();
+            containerRegistry.RegisterForNavigation<Login>();
+            containerRegistry.RegisterForNavigation<CreateAccount>();
+            containerRegistry.RegisterForNavigation<PasswordReset>();
+        }
+    }
 }

@@ -4,41 +4,41 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>240</x>
-      <y>470</y>
+      <x>280</x>
+      <y>490</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>RegistrationKey Page</panel_attributes>
+    <panel_attributes>RegistrationKey View</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>470</y>
+      <x>680</x>
+      <y>490</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>CreateAccount Page</panel_attributes>
+    <panel_attributes>CreateAccount View</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>650</x>
-      <y>680</y>
+      <x>690</x>
+      <y>700</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>ForgotPassword Page</panel_attributes>
+    <panel_attributes>ForgotPassword View</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>100</x>
-      <y>300</y>
+      <x>290</x>
+      <y>110</y>
       <w>60</w>
       <h>110</h>
     </coordinates>
@@ -49,44 +49,43 @@ bg=blue</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>880</x>
-      <y>310</y>
+      <x>920</x>
+      <y>330</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>MainApplication Page
+    <panel_attributes>MainApplication
 bg=red</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>160</x>
-      <y>310</y>
-      <w>740</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-
-gültige Einlog Daten bereits lokal vorhanden</panel_attributes>
-    <additional_attributes>720.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>160</x>
-      <y>340</y>
-      <w>100</w>
+      <x>310</x>
+      <y>200</y>
+      <w>630</w>
       <h>170</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
-sonst</panel_attributes>
-    <additional_attributes>80.0;150.0;40.0;150.0;40.0;10.0;10.0;10.0</additional_attributes>
+gültige Einlog Daten bereits lokal vorhanden</panel_attributes>
+    <additional_attributes>610.0;150.0;10.0;150.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>480</y>
+      <x>120</x>
+      <y>420</y>
+      <w>180</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;90.0;10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>500</y>
       <w>270</w>
       <h>130</h>
     </coordinates>
@@ -97,19 +96,19 @@ Hat bereits Account</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>640</x>
-      <y>570</y>
+      <x>680</x>
+      <y>590</y>
       <w>160</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>Login Page</panel_attributes>
+    <panel_attributes>Login View</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>720</x>
-      <y>600</y>
+      <x>760</x>
+      <y>620</y>
       <w>150</w>
       <h>100</h>
     </coordinates>
@@ -120,8 +119,8 @@ Passwort vergessen</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>470</y>
+      <x>430</x>
+      <y>490</y>
       <w>270</w>
       <h>40</h>
     </coordinates>
@@ -132,8 +131,8 @@ RegKey ist frei und gültig</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>790</x>
-      <y>340</y>
+      <x>830</x>
+      <y>360</y>
       <w>230</w>
       <h>170</h>
     </coordinates>
@@ -145,13 +144,36 @@ Account erstellt
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>790</x>
-      <y>340</y>
+      <x>830</x>
+      <y>360</y>
       <w>350</w>
       <h>270</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 Login erfolgreich</panel_attributes>
     <additional_attributes>230.0;10.0;230.0;250.0;10.0;250.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>50</x>
+      <y>390</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Welcome View</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>120</x>
+      <y>200</y>
+      <w>220</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+keine lokalen Daten vorhanden</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;150.0;200.0;150.0;200.0;10.0</additional_attributes>
   </element>
 </diagram>

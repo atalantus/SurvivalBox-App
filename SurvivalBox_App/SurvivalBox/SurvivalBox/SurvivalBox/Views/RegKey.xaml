@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="SurvivalBox.Views.RegKey"
+             Title="Account Creation">
+
+    <StackLayout Padding="20,10,20,50">
+
+        <StackLayout VerticalOptions="StartAndExpand" Spacing="15">
+            <Label Text="Welcome!" Margin="0,0,0,10" VerticalOptions="Start" Style="{StaticResource H01}"/>
+            <Label Text="Please enter the Registration Key from your SurvivalBox below." Style="{StaticResource H04}"/>
+            <Entry Text="{Binding RegKeyValue}" Placeholder="0000-0000-0000-0000" WidthRequest="300" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+        </StackLayout>
+
+        <StackLayout VerticalOptions="End">
+            <Button Text="Activate" Command="{Binding ActivateRegKeyCommand}" HorizontalOptions="Center" Margin="0,0,0,10"/>
+            <Label Text="Already got an account?" HorizontalOptions="Center" Style="{StaticResource LinkLbl}">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LogInCommand}"></TapGestureRecognizer>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>
