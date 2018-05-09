@@ -15,7 +15,7 @@
         </StackLayout>
 
         <StackLayout VerticalOptions="End">
-            <Button Text="Activate" Command="{Binding ActivateRegKeyCommand}" HorizontalOptions="Center" Margin="0,0,0,10"/>
+            <Button Text="Activate" Command="{Binding ActivateRegKeyCommand}" Style="{StaticResource PrimaryBtn}" HorizontalOptions="Center" Margin="0,0,0,10"/>
             <Label Text="Already got an account?" HorizontalOptions="Center" Style="{StaticResource LinkLbl}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding LogInCommand}"></TapGestureRecognizer>

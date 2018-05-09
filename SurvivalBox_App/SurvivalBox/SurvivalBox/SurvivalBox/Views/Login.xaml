@@ -12,18 +12,16 @@
             <Label Text="Login" Margin="0,0,0,25" HorizontalOptions="Center" VerticalOptions="Start" Style="{StaticResource H01}"/>
             <Label Text="Log into your existing account." Margin="0,0,0,15" Style="{StaticResource H04}"/>
 
-            <StackLayout Spacing="5">
+            <StackLayout Spacing="25">
                 <Entry Text="{Binding EMailText}" Placeholder="E-mail" WidthRequest="300" HorizontalOptions="Center"/>
-                <Label Text="{Binding EMailFeedbackText}" TextColor="DarkRed"></Label>
 
                 <Entry Text="{Binding PasswordText}" IsPassword="True" Placeholder="Password" WidthRequest="300" HorizontalOptions="Center"/>
-                <Label Text="{Binding PasswordFeedbackText}" TextColor="DarkRed"></Label>
             </StackLayout>
 
         </StackLayout>
 
         <StackLayout VerticalOptions="End">
-            <Button Text="Login" Command="{Binding LoginCommand}" HorizontalOptions="Center" Margin="0,0,0,10"/>
+            <Button Text="Login" Command="{Binding LoginCommand}" Style="{StaticResource PrimaryBtn}" HorizontalOptions="Center" Margin="0,0,0,10"/>
             <Label Text="Forgot your Password?" HorizontalOptions="Center" Style="{StaticResource LinkLbl}">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding ResetPasswordCommand}"></TapGestureRecognizer>

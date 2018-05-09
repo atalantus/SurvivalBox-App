@@ -7,7 +7,7 @@
     <ContentPage>
         <StackLayout Padding="20,10,20,50">
             <StackLayout VerticalOptions="StartAndExpand">
-                <Label Style="{StaticResource H01}" Margin="0,0,0,25" >Welcome info 1</Label>
+                <Label Style="{StaticResource H01}" Margin="0,0,0,25" >App info 1</Label>
                 <Label HorizontalTextAlignment="Center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est sapien, ultrices ac maximus sit amet, ullamcorper eu magna. Cras eu consectetur sem. Quisque id elit diam. Curabitur nec tincidunt.</Label>
             </StackLayout>
         </StackLayout>
@@ -16,7 +16,7 @@
     <ContentPage>
         <StackLayout Padding="20,10,20,50">
             <StackLayout VerticalOptions="StartAndExpand">
-                <Label Style="{StaticResource H01}" Margin="0,0,0,25">Welcome info 2</Label>
+                <Label Style="{StaticResource H01}" Margin="0,0,0,25">App info 2</Label>
                 <Label HorizontalTextAlignment="Center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est sapien, ultrices ac maximus sit amet, ullamcorper eu magna. Cras eu consectetur sem. Quisque id elit diam. Curabitur nec tincidunt.</Label>
             </StackLayout>
         </StackLayout>
@@ -25,11 +25,11 @@
     <ContentPage>
         <StackLayout Padding="20,10,20,50">
             <StackLayout VerticalOptions="StartAndExpand">
-                <Label Style="{StaticResource H01}" Margin="0,0,0,25">Welcome info 3</Label>
+                <Label Style="{StaticResource H01}" Margin="0,0,0,25">App info 3</Label>
                 <Label HorizontalTextAlignment="Center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est sapien, ultrices ac maximus sit amet, ullamcorper eu magna. Cras eu consectetur sem. Quisque id elit diam. Curabitur nec tincidunt.</Label>
             </StackLayout>
 
-            <Button Command="{Binding GetStartedCommand}" VerticalOptions="End" Text="Get Started" HorizontalOptions="Center"></Button>
+            <Button Command="{Binding GetStartedCommand}" Style="{StaticResource PrimaryBtn}" VerticalOptions="End" Text="Get Started" HorizontalOptions="Center"></Button>
         </StackLayout>
     </ContentPage>
 </CarouselPage>

@@ -5,5 +5,29 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SurvivalBox.Views.CreateAccount"
              Title="Account Creation">
-  
+
+    <StackLayout Padding="20,10,20,50">
+
+        <StackLayout VerticalOptions="StartAndExpand">
+            <Label Text="Account Creation" Margin="0,0,0,25" HorizontalOptions="Center" VerticalOptions="Start" Style="{StaticResource H01}"/>
+            <Label Text="Create your SurvivalBox Account." Margin="0,0,0,15" Style="{StaticResource H04}"/>
+
+            <StackLayout Spacing="25">
+                <Entry Text="{Binding EMailText}" Placeholder="E-mail" WidthRequest="300" HorizontalOptions="Center"/>
+
+                <Entry Text="{Binding PasswordText}" IsPassword="True" Placeholder="Password" WidthRequest="300" HorizontalOptions="Center"/>
+
+                <Entry Text="{Binding PasswordRepeatText}" IsPassword="True" Placeholder="Password repeat" WidthRequest="300" HorizontalOptions="Center"/>
+
+                <Entry Text="{Binding NameText}" Placeholder="Your first name" WidthRequest="300" HorizontalOptions="Center"/>
+            </StackLayout>
+
+        </StackLayout>
+
+        <StackLayout VerticalOptions="End">
+            <Button Text="Create Account" Command="{Binding CreateAccountCommand}" Style="{StaticResource PrimaryBtn}" HorizontalOptions="Center" Margin="0,0,0,10"/>
+        </StackLayout>
+
+    </StackLayout>
+
 </ContentPage>
