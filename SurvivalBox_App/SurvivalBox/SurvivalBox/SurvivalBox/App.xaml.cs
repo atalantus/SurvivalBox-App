@@ -35,6 +35,9 @@ namespace SurvivalBox
             containerRegistry.RegisterForNavigation<Login>();
             containerRegistry.RegisterForNavigation<CreateAccount>();
             containerRegistry.RegisterForNavigation<PasswordReset>();
+            containerRegistry.RegisterForNavigation<Main>();
+            containerRegistry.RegisterForNavigation<MainMaster>();
+            containerRegistry.RegisterForNavigation<MainDetail01>();
         }
     }
 }

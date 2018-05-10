@@ -53,7 +53,9 @@ namespace SurvivalBox.ViewModels
 
 	    private void CreateAccount()
 	    {
-	        _dialogService.DisplayAlertAsync("Error", "Your Account could not be created!", "OK");
+            //TODO: Create Account
+	        //_dialogService.DisplayAlertAsync("Error", "Your Account could not be created!", "OK");
+	        _navigationService.NavigateAsync("Main", useModalNavigation:true);
 	    }
 	}
 }

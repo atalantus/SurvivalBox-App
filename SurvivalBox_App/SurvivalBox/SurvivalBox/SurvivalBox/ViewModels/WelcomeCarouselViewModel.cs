@@ -23,7 +23,7 @@ namespace SurvivalBox.ViewModels
 
 	    private void GetStarted()
 	    {
-	        _navigationService.NavigateAsync("NavigationPage/RegKey");
+	        _navigationService.NavigateAsync("NavigationPage/RegKey", useModalNavigation:true);
 	    }
 	}
 }

@@ -9,8 +9,8 @@
     <StackLayout Padding="20,10,20,50">
 
         <StackLayout VerticalOptions="StartAndExpand" Spacing="15">
-            <Label Text="Welcome!" Margin="0,0,0,10" VerticalOptions="Start" Style="{StaticResource H01}"/>
-            <Label Text="Please enter the Registration Key from your SurvivalBox below." Style="{StaticResource H04}"/>
+            <Label Text="Welcome!" Margin="0,0,0,10" VerticalOptions="Start" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center"/>
+            <Label Text="Please enter the Registration Key from your SurvivalBox below." HorizontalTextAlignment="Center" Style="{DynamicResource SubtitleStyle}"/>
             <Entry Text="{Binding RegKeyValue}" Placeholder="0000-0000-0000-0000" WidthRequest="300" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
         </StackLayout>
 

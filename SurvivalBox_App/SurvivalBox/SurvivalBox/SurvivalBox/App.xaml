@@ -4,25 +4,9 @@
              xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
              x:Class="SurvivalBox.App">
 	<Application.Resources>
-	    <ResourceDictionary>
+        <ResourceDictionary>
 
-	        <!-- Header01 -->
-	        <Style x:Key="H01" TargetType="Label">
-                <Setter Property="FontSize" Value="40"></Setter>
-                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-	            <!-- HACK: https://stackoverflow.com/questions/43147929/xamarin-label-losing-text-alignment-when-page-returned-to -->
-                <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
-            </Style>
-
-	        <!-- Header04 -->
-	        <Style x:Key="H04" TargetType="Label">
-	            <Setter Property="FontSize" Value="20"></Setter>
-	            <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-	            <!-- HACK: https://stackoverflow.com/questions/43147929/xamarin-label-losing-text-alignment-when-page-returned-to -->
-	            <Setter Property="HorizontalOptions" Value="CenterAndExpand"></Setter>
-            </Style>
-
-	        <!-- PrimaryBtn -->
+            <!-- PrimaryBtn -->
 	        <Style x:Key="PrimaryBtn" TargetType="Button">
 	            <Setter Property="FontSize" Value="20"></Setter>
 	            <Setter Property="BackgroundColor" Value="Accent"></Setter>
