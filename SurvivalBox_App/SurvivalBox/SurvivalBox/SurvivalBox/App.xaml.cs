@@ -1,16 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using Prism;
+﻿using Prism;
 using Prism.Ioc;
 using SurvivalBox.ViewModels;
 using SurvivalBox.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
-using SurvivalBox.Models;
-using SurvivalBox.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SurvivalBox
@@ -30,22 +24,7 @@ namespace SurvivalBox
         {
             InitializeComponent();
 
-            var item = new TodoItem()
-            {
-                Name = "Jonas schlagen"
-            };
-
-            var list01 = TodoItemManager.Instance.GetTodoItemsAsync();
-            var hallo = await Test(item);
-            Debug.WriteLine("hey");
-
             await NavigationService.NavigateAsync("WelcomeCarousel");
-        }
-
-        private async Task<IEnumerable<TodoItem>> Test(TodoItem item)
-        {
-            await TodoItemManager.Instance.AddItem(item);
-            return await TodoItemManager.Instance.GetTodoItemsAsync();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
