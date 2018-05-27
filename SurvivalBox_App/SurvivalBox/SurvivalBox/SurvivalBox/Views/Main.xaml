@@ -7,14 +7,65 @@
                   x:Class="SurvivalBox.Views.Main">
 
     <MasterDetailPage.Master>
-        <views:MainMaster/>
+        <NavigationPage Title="Master">
+            <x:Arguments>
+                <ContentPage
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             Title="Master">
+                    <StackLayout>
+                        <ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedItem}">
+                            <ListView.Behaviors>
+                                <b:EventToCommandBehavior EventName="ItemSelected" 
+                                          Command="{Binding ItemSelectedCommand}" />
+                            </ListView.Behaviors>
+                            <ListView.Header>
+                                <Grid BackgroundColor="#45E87E">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="10"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition Height="80"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="10"/>
+                                    </Grid.RowDefinitions>
+                                    <Label
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Text="SurvivalBox" 
+                        Style="{DynamicResource TitleStyle}"/>
+                                </Grid>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="5,10">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding IconSource}" />
+                                            <Label Grid.Column="1" Text="{Binding Title}" Style="{DynamicResource SubtitleStyle}"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+                </ContentPage>
+            </x:Arguments>
+        </NavigationPage>
+
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <views:MainDetail01></views:MainDetail01>
+                <views:MainTodoItem></views:MainTodoItem>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
-    
+
 </MasterDetailPage>

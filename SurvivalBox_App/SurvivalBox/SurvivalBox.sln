@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurvivalBox", "SurvivalBox\SurvivalBox\SurvivalBox.csproj", "{763904D8-5626-4A75-AD18-241444BCD55B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurvivalBox", "SurvivalBox\SurvivalBox\SurvivalBox.csproj", "{763904D8-5626-4A75-AD18-241444BCD55B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurvivalBox.Android", "SurvivalBox\SurvivalBox.Android\SurvivalBox.Android.csproj", "{5B1D9021-AE43-453F-A848-2FBECBE2669F}"
 EndProject
@@ -228,6 +228,8 @@ Global
 		{EC303CE2-1A11-471B-8E70-353D7960ECB8}.AppStore|x86.Build.0 = Release|x86
 		{EC303CE2-1A11-471B-8E70-353D7960ECB8}.AppStore|x86.Deploy.0 = Release|x86
 		{EC303CE2-1A11-471B-8E70-353D7960ECB8}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{EC303CE2-1A11-471B-8E70-353D7960ECB8}.Debug|Any CPU.Build.0 = Debug|x86
+		{EC303CE2-1A11-471B-8E70-353D7960ECB8}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{EC303CE2-1A11-471B-8E70-353D7960ECB8}.Debug|ARM.ActiveCfg = Debug|ARM
 		{EC303CE2-1A11-471B-8E70-353D7960ECB8}.Debug|ARM.Build.0 = Debug|ARM
 		{EC303CE2-1A11-471B-8E70-353D7960ECB8}.Debug|ARM.Deploy.0 = Debug|ARM

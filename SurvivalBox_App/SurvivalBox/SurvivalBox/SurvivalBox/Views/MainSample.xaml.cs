@@ -2,9 +2,9 @@
 
 namespace SurvivalBox.Views
 {
-    public partial class MainMaster : ContentPage
+    public partial class MainSample : ContentPage
     {
-        public MainMaster()
+        public MainSample()
         {
             InitializeComponent();
         }
