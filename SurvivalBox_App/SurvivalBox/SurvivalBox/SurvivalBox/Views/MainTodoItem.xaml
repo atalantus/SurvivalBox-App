@@ -2,9 +2,61 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SurvivalBox.Views.MainTodoItem">
-    <StackLayout>
-        <Label Text="Sample TodoItem Page!" Style="{DynamicResource SubtitleStyle}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"></Label>
-    </StackLayout>
+    <!--<ContentPage.Behaviors>
+        <b:EventToCommandBehavior EventName="OnAppearing"
+                                  Command="{Binding AppearingCommand}" />
+    </ContentPage.Behaviors>-->
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="False" IsEnabled="True" />
+
+        <StackLayout Grid.Row="0" BackgroundColor="#5ABAFF" Padding="10,30,10,5">
+            <Label TextColor="#555555" Text="Azure App Service" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Entry Text="{Binding NewItemName}" Placeholder="Enter new Todo item here" />
+                <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
+                    <Button Text="+" MinimumHeightRequest="30" Command="{Binding AddItemCommand}" />
+                    <Button Text="Sync" BackgroundColor="Lime" Command="{Binding SyncCommand}" />
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+
+        <ListView IsPullToRefreshEnabled="true" Grid.Row="1" ItemsSource="{Binding TodoItems}" SelectedItem="{Binding SelectedItem}" IsRefreshing="{Binding IsRefreshing}">
+            <ListView.Behaviors>
+                <b:EventToCommandBehavior EventName="ItemSelected" 
+                                          Command="{Binding ItemSelectedCommand}" />
+                <b:EventToCommandBehavior EventName="Refreshing"
+                                          Command="{Binding RefreshingCommand}" />
+            </ListView.Behaviors>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Command="{Binding CompleteCommand}" Text="Complete" CommandParameter="{Binding .}" />
+                        </ViewCell.ContextActions>
+                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="15,5,0,0">
+                            <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
+                                <Label Text="{Binding Name}" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
 </ContentPage>
