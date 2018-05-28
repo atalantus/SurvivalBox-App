@@ -17,12 +17,11 @@ namespace SurvivalBox.ViewModels
 
 
 
-        public DelegateCommand AppearingCommand { get; set; }
         public DelegateCommand AddItemCommand { get; set; }
         public DelegateCommand RefreshingCommand { get; set; }
         public DelegateCommand SyncCommand { get; set; }
         public DelegateCommand ItemSelectedCommand { get; set; }
-        public DelegateCommand CompleteCommand { get; set; }
+        public DelegateCommand<object> CompleteCommand { get; set; }
 
         private string _newItemName;
         public string NewItemName
@@ -38,18 +37,11 @@ namespace SurvivalBox.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
-        private bool _activityIndicatorIsVisible;
-        public bool ActivityIndicatorIsVisible
+        private bool _activityIndicatorIsActive;
+        public bool ActivityIndicatorIsActive
         {
-            get => _activityIndicatorIsVisible;
-            set => SetProperty(ref _activityIndicatorIsVisible, value);
-        }
-
-        private bool _activityIndicatorIsRunning;
-        public bool ActivityIndicatorIsRunning
-        {
-            get => _activityIndicatorIsRunning;
-            set => SetProperty(ref _activityIndicatorIsRunning, value);
+            get => _activityIndicatorIsActive;
+            set => SetProperty(ref _activityIndicatorIsActive, value);
         }
 
         private bool _isRefreshing;
@@ -79,25 +71,14 @@ namespace SurvivalBox.ViewModels
 
         public MainTodoItemViewModel(IPageDialogService dialogService)
         {
-            AppearingCommand = new DelegateCommand(OnAppearing);
             AddItemCommand = new DelegateCommand(OnAddItem);
             RefreshingCommand = new DelegateCommand(OnRefresh);
             SyncCommand = new DelegateCommand(SyncItems);
             ItemSelectedCommand = new DelegateCommand(OnItemSelected);
-            CompleteCommand = new DelegateCommand(Complete);
+            CompleteCommand = new DelegateCommand<object>(Complete);
 
             _manager = TodoItemManager.DefaultManager;
             _dialogService = dialogService;
-
-            TodoItems = new ObservableCollection<TodoItem>();
-        }
-
-        private async void OnAppearing()
-        {
-            Debug.WriteLine("OnAppearing()");
-
-            // Set syncItems to true in order to synchronize the data on startup when running in offline mode
-            await RefreshItems(true, true);
         }
 
         private async void OnAddItem()
@@ -156,6 +137,8 @@ namespace SurvivalBox.ViewModels
                     // Windows, not all platforms support the Context Actions yet
                     if (await _dialogService.DisplayAlertAsync("Mark completed?", "Do you wish to complete " + SelectedItem.Name + "?", "Complete", "Cancel"))
                     {
+                        Debug.WriteLine($"Name: {SelectedItem.Name} | ID: {SelectedItem.Id} | Version: {SelectedItem.Version}");
+
                         await CompleteItem(SelectedItem);
                     }
                 }
@@ -165,9 +148,16 @@ namespace SurvivalBox.ViewModels
             SelectedItem = null;
         }
 
-        private void Complete()
+        private async void Complete(object item)
         {
             Debug.WriteLine("Complete");
+
+            if (item is TodoItem todoItem)
+            {
+                Debug.WriteLine($"Name: {todoItem.Name} | ID: {todoItem.Id} | Version: {todoItem.Version}");
+
+                await CompleteItem(todoItem);
+            }
         }
 
         // Data methods
@@ -180,7 +170,9 @@ namespace SurvivalBox.ViewModels
         async Task CompleteItem(TodoItem item)
         {
             item.Done = true;
+            Debug.WriteLine("Item Done");
             await _manager.SaveTaskAsync(item);
+            Debug.WriteLine("Save task");
             TodoItems = await _manager.GetTodoItemsAsync();
         }
 
@@ -189,9 +181,9 @@ namespace SurvivalBox.ViewModels
             await RefreshItems(true, true);
         }
 
-        private async Task RefreshItems(bool showActivityIndicator, bool syncItems)
+        public async Task RefreshItems(bool showActivityIndicator, bool syncItems)
         {
-            using (var scope = new ActivityIndicatorScope(this, showActivityIndicator))
+            using (new ActivityIndicatorScope(this, showActivityIndicator))
             {
                 TodoItems = await _manager.GetTodoItemsAsync(syncItems);
             }
@@ -225,7 +217,7 @@ namespace SurvivalBox.ViewModels
 
             private void SetIndicatorActivity(bool isActive)
             {
-                _viewModel.ActivityIndicatorIsRunning = _viewModel.ActivityIndicatorIsVisible = isActive;
+                _viewModel.ActivityIndicatorIsActive = isActive;
             }
 
             public void Dispose()
