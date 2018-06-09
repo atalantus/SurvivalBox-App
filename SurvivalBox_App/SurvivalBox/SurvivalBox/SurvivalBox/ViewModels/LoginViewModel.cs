@@ -60,7 +60,7 @@ namespace SurvivalBox.ViewModels
             //TODO: Login
 
 	        //_dialogService.DisplayAlertAsync("Error", "Your E-Mail adress or password is wrong!", "OK");
-	        _navigationService.NavigateAsync("Main",useModalNavigation:true);
+	        _navigationService.NavigateAsync("Main", useModalNavigation:true);
 	    }
 
 	    private void ResetPassword()

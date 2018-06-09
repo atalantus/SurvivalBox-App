@@ -20,6 +20,11 @@
                             </ListView.Behaviors>
                             <ListView.Header>
                                 <Grid BackgroundColor="#45E87E">
+                                    
+                                    <Grid.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ShowWarningsCommand}"></TapGestureRecognizer>
+                                    </Grid.GestureRecognizers>
+
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="10"/>
                                         <ColumnDefinition Width="*"/>
@@ -34,7 +39,7 @@
                                     <Label
                         Grid.Column="1"
                         Grid.Row="2"
-                        Text="SurvivalBox" 
+                        Text="{Binding WarningsText}" 
                         Style="{DynamicResource TitleStyle}"/>
                                 </Grid>
                             </ListView.Header>
@@ -63,7 +68,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <views:MainTodoItem></views:MainTodoItem>
+                <views:MainSample></views:MainSample>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

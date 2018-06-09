@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+            prism:ViewModelLocator.AutowireViewModel="True"
+            x:Class="SurvivalBox.Views.MainSettings"
+            Title="Settings">
+    <ContentPage Title="SurvivalBox">
+        <StackLayout>
+            <Label Text="Some cool Settings" Style="{DynamicResource TitleStyle}"></Label>
+            <Switch></Switch>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Other">
+        <StackLayout>
+            <Label Text="About" Style="{DynamicResource TitleStyle}" Margin="10,0,0,15"></Label>
+            <Label Text="Mountains by Chris Cole from the Noun Project" Style="{DynamicResource SubtitleStyle}"></Label>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>
