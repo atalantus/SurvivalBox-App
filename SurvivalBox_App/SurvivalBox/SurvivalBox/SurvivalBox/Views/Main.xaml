@@ -13,34 +13,26 @@
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              Title="Master">
                     <StackLayout>
-                        <ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedItem}">
+                        <ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                             <ListView.Behaviors>
                                 <b:EventToCommandBehavior EventName="ItemSelected" 
                                           Command="{Binding ItemSelectedCommand}" />
                             </ListView.Behaviors>
                             <ListView.Header>
-                                <Grid BackgroundColor="#45E87E">
-                                    
+                                <Grid BackgroundColor="#45E87E" Padding="10,25,10,15">
+
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding ShowWarningsCommand}"></TapGestureRecognizer>
                                     </Grid.GestureRecognizers>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="10"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="10"/>
-                                    </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition Height="80"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="10"/>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                        <RowDefinition Height="10"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <Label
-                        Grid.Column="1"
-                        Grid.Row="2"
-                        Text="{Binding WarningsText}" 
-                        Style="{DynamicResource TitleStyle}"/>
+
+                                    <Label Grid.Row="0" Text="{Binding WarningsText}" Style="{DynamicResource TitleStyle}"/>
+                                    <Label Grid.Row="2" Text="Click to view" Style="{DynamicResource SubtitleStyle}"></Label>
                                 </Grid>
                             </ListView.Header>
                             <ListView.ItemTemplate>

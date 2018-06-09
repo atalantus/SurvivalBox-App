@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SurvivalBox.Views.MainWarnings">
   <Grid>
@@ -20,7 +21,12 @@
             <Button Grid.Column="1" VerticalOptions="Center" Text="Change Sorting"></Button>
         </Grid>
 
-        <ListView Grid.Row="1" HasUnevenRows="True" ItemsSource="{Binding Warnings}" Margin="0,10,0,0">
+        <ListView Grid.Row="1" HasUnevenRows="True" ItemsSource="{Binding Warnings}" SelectedItem="{Binding SelectedWarning, Mode=TwoWay}" Margin="0,10,0,0">
+            <ListView.Behaviors>
+                <b:EventToCommandBehavior EventName="ItemSelected" 
+                                          Command="{Binding WarningSelectedCommand}" />
+            </ListView.Behaviors>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

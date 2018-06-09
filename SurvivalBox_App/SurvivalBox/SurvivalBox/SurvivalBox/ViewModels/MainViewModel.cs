@@ -28,16 +28,15 @@ namespace SurvivalBox.ViewModels
 	    public DelegateCommand ItemSelectedCommand { get; set; }
         public DelegateCommand ShowWarningsCommand { get; set; }
 
-
         public MainViewModel(INavigationService navigationService)
 	    {
             _navigationService = navigationService;
 
 	        MenuItems = new ObservableCollection<MenuItem>(new[]
 	        {
-	            new MenuItem { Id = 0, Title = "Todo Items", IconSource = "", ViewName = "MainTodoItem"},
-	            new MenuItem { Id = 1, Title = "Sample", IconSource = "", ViewName = "MainSample"},
-                new MenuItem {Id = 2, Title = "Settings", IconSource = "", ViewName = "MainSettings"}
+	            new MenuItem { Id = 0, Title = "Todo Items", IconSource = "todoList_icon.png", ViewName = "MainTodoItem"},
+	            new MenuItem { Id = 1, Title = "Sample", IconSource = "location_icon.png", ViewName = "MainSample"},
+                new MenuItem {Id = 2, Title = "Settings", IconSource = "settings_icon.png", ViewName = "MainSettings"}
 	        });
 
 	        ItemSelectedCommand = new DelegateCommand(OnItemSelected);

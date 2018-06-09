@@ -13,26 +13,27 @@ namespace SurvivalBox.ViewModels
 	{
 	    private IPageDialogService _dialogService;
 
-	    private ObservableCollection<Warning> _warnings;
+	    public ObservableCollection<Warning> Warnings => WarningManager.Instance.Warnings;
 
-	    public ObservableCollection<Warning> Warnings
-	    {
-	        get => _warnings;
-	        set => SetProperty(ref _warnings, value);
-	    }
+	    private Warning _selectedWarning;
+        public Warning SelectedWarning
+        {
+            get => _selectedWarning;
+            set => SetProperty(ref _selectedWarning, value);
+        }
 
-	    public MainWarningsViewModel(IPageDialogService dialogService)
+        public DelegateCommand WarningSelectedCommand { get; set; }
+
+        public MainWarningsViewModel(IPageDialogService dialogService)
 	    {
 	        _dialogService = dialogService;
 
-	        _warnings = new ObservableCollection<Warning>()
-	        {
-	            new Warning("Title01", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-	            new Warning("Title02", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-	            new Warning("Title03", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-	            new Warning("Title04", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-	            new Warning("Title05", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-	        };
+            WarningSelectedCommand = new DelegateCommand(OnWarningSelected);
+	    }
+
+	    private void OnWarningSelected()
+	    {
+	        SelectedWarning = null;
 	    }
     }
 }
