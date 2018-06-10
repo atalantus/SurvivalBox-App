@@ -44,9 +44,9 @@
                         <ViewCell.ContextActions>
                             <MenuItem Command="{Binding Path=BindingContext.CompleteCommand, Source={x:Reference Page}}" Text="Complete" CommandParameter="{Binding .}" />
                         </ViewCell.ContextActions>
-                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="15,5,0,0">
-                            <StackLayout Padding="5,0,0,0" VerticalOptions="StartAndExpand" Orientation="Vertical">
-                                <Label Text="{Binding Name}" />
+                        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal" Padding="15,0,0,0">
+                            <StackLayout Padding="5,5,0,5" VerticalOptions="StartAndExpand" Orientation="Vertical">
+                                <Label Text="{Binding Name}" Style="{DynamicResource SubtitleStyle}"/>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>

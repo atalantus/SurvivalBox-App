@@ -18,7 +18,6 @@ namespace SurvivalBox.ViewModels
 
 
         public DelegateCommand AddItemCommand { get; set; }
-        public DelegateCommand RefreshingCommand { get; set; }
         public DelegateCommand SyncCommand { get; set; }
         public DelegateCommand ItemSelectedCommand { get; set; }
         public DelegateCommand<object> CompleteCommand { get; set; }
@@ -65,7 +64,6 @@ namespace SurvivalBox.ViewModels
         public MainTodoItemViewModel(IPageDialogService dialogService)
         {
             AddItemCommand = new DelegateCommand(OnAddItem);
-            RefreshingCommand = new DelegateCommand(OnRefresh);
             SyncCommand = new DelegateCommand(SyncItems);
             ItemSelectedCommand = new DelegateCommand(OnItemSelected);
             CompleteCommand = new DelegateCommand<object>(Complete);

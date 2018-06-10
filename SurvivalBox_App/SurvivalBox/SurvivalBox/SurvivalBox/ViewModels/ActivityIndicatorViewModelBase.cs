@@ -5,7 +5,7 @@ namespace SurvivalBox.ViewModels
 {
     public abstract class ActivityIndicatorViewModelBase : BindableBase
     {
-        DelegateCommand RefreshingCommand { get; set; }
+        public DelegateCommand RefreshingCommand { get; set; }
 
         public ActivityIndicatorViewModelBase()
         {

@@ -2,7 +2,39 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="SurvivalBox.Views.MainWeather">
-  
+             x:Class="SurvivalBox.Views.MainWeather"
+             Title="Weather">
+
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsRunning="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsEnabled="True" />
+
+        <Grid Grid.Row="0">
+            <Switch></Switch>
+        </Grid>
+
+        <ListView Grid.Row="1"  VerticalOptions="FillAndExpand" HasUnevenRows="True" IsPullToRefreshEnabled="True" ItemsSource="{Binding WeatherProperties}">
+            <ListView.Behaviors>
+                <b:EventToCommandBehavior EventName="Refreshing"
+                                          Command="{Binding RefreshingCommand}" />
+            </ListView.Behaviors>
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Margin="0,0,0,10">
+                            <Label Text="{Binding Title}" Style="{DynamicResource TitleStyle}" />
+                            <Label Text="{Binding Content}" Style="{DynamicResource SubtitleStyle}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>
