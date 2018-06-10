@@ -11,7 +11,7 @@ using Xamarin.Forms;
 
 namespace SurvivalBox.ViewModels
 {
-    public class MainTodoItemViewModel : BindableBase
+    public class MainTodoItemViewModel : ActivityIndicatorViewModelBase
     {
         #region Fields
 
@@ -35,13 +35,6 @@ namespace SurvivalBox.ViewModels
         {
             get => _selectedItem;
             set => SetProperty(ref _selectedItem, value);
-        }
-
-        private bool _activityIndicatorIsActive;
-        public bool ActivityIndicatorIsActive
-        {
-            get => _activityIndicatorIsActive;
-            set => SetProperty(ref _activityIndicatorIsActive, value);
         }
 
         private bool _isRefreshing;
@@ -96,7 +89,7 @@ namespace SurvivalBox.ViewModels
             //TODO: https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/triggers#event
         }
 
-        private async void OnRefresh()
+        protected override async void OnRefresh()
         {
             Debug.WriteLine("OnRefresh");
 
@@ -192,41 +185,5 @@ namespace SurvivalBox.ViewModels
 
 
         #endregion
-
-        private class ActivityIndicatorScope : IDisposable
-        {
-            private bool _showIndicator;
-            private MainTodoItemViewModel _viewModel;
-            private Task _indicatorDelay;
-
-            public ActivityIndicatorScope(MainTodoItemViewModel viewModel, bool showIndicator)
-            {
-                _viewModel = viewModel;
-                this._showIndicator = showIndicator;
-
-                if (showIndicator)
-                {
-                    _indicatorDelay = Task.Delay(2000);
-                    SetIndicatorActivity(true);
-                }
-                else
-                {
-                    _indicatorDelay = Task.FromResult(0);
-                }
-            }
-
-            private void SetIndicatorActivity(bool isActive)
-            {
-                _viewModel.ActivityIndicatorIsActive = isActive;
-            }
-
-            public void Dispose()
-            {
-                if (_showIndicator)
-                {
-                    _indicatorDelay.ContinueWith(t => SetIndicatorActivity(false), TaskScheduler.FromCurrentSynchronizationContext());
-                }
-            }
-        }
     }
 }
