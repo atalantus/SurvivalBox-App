@@ -136,21 +136,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\settings_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable-hdpi\todolist_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-mdpi\todolist_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xhdpi\todolist_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxhdpi\todolist_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable-xxxhdpi\todolist_icon.png" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
@@ -185,6 +170,18 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-hdpi\logo_outline_dark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable-hdpi\home_icon.png" />
+    <Content Include="Resources\drawable-hdpi\weather_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\weather_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\weather_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\weather_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\weather_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\home_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\home_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\home_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\home_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

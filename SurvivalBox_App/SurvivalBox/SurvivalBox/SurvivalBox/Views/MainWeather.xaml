@@ -3,8 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="SurvivalBox.Views.MainSample">
-  <StackLayout>
-      <Label Text="Sample Detail Page!" Style="{DynamicResource SubtitleStyle}" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center"></Label>
-  </StackLayout>
+             x:Class="SurvivalBox.Views.MainWeather">
+  
 </ContentPage>

@@ -34,9 +34,10 @@ namespace SurvivalBox.ViewModels
 
 	        MenuItems = new ObservableCollection<MenuItem>(new[]
 	        {
-	            new MenuItem { Id = 0, Title = "Todo Items", IconSource = "todolist_icon.png", ViewName = "MainTodoItem"},
-	            new MenuItem { Id = 1, Title = "Sample", IconSource = "location_icon.png", ViewName = "MainSample"},
-                new MenuItem {Id = 2, Title = "Settings", IconSource = "settings_icon.png", ViewName = "MainSettings"}
+                new MenuItem { Id = 0, Title = "Home", IconSource = "home_icon.png", ViewName = "MainHome"},
+	            new MenuItem { Id = 1, Title = "Todo Items", IconSource = "location_icon.png", ViewName = "MainTodoItem"},
+	            new MenuItem { Id = 2, Title = "Weather", IconSource = "weather_icon.png", ViewName = "MainWeather"},
+                new MenuItem { Id = 3, Title = "Settings", IconSource = "settings_icon.png", ViewName = "MainSettings"}
 	        });
 
 	        ItemSelectedCommand = new DelegateCommand(OnItemSelected);

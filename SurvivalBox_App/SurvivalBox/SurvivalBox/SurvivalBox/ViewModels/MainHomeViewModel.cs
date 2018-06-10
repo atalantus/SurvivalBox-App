@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace SurvivalBox.ViewModels
 {
-	public class MainSampleViewModel : BindableBase
+	public class MainHomeViewModel : BindableBase
 	{
-        public MainSampleViewModel()
+        public MainHomeViewModel()
         {
 
         }

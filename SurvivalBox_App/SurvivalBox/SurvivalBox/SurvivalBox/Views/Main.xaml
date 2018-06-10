@@ -60,7 +60,7 @@
     <MasterDetailPage.Detail>
         <NavigationPage>
             <x:Arguments>
-                <views:MainSample></views:MainSample>
+                <views:MainHome></views:MainHome>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

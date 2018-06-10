@@ -2,9 +2,9 @@
 
 namespace SurvivalBox.Views
 {
-    public partial class MainSample : ContentPage
+    public partial class MainWeather : ContentPage
     {
-        public MainSample()
+        public MainWeather()
         {
             InitializeComponent();
         }
