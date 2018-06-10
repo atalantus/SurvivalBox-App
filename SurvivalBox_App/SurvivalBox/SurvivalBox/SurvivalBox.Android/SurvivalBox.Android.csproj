@@ -48,6 +48,9 @@
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
+  <PropertyGroup>
+    <UseShortFileNames>True</UseShortFileNames>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
@@ -99,64 +102,67 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\survivalBox_icon.png" />
+    <Folder Include="Resources\color\" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\survivalBox_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\location_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\survivalBox_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\location_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\survivalBox_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\location_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\survivalBox_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\location_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\location_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\location_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\location_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\settings_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\location_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\settings_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\location_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\settings_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\location_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\settings_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\settings_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\todolist_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\todolist_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\todolist_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\settings_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\todolist_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-hdpi\todoList_icon.png" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\todolist_icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-mdpi\todoList_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xhdpi\todoList_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxhdpi\todoList_icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\mipmap-xxxhdpi\todoList_icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
