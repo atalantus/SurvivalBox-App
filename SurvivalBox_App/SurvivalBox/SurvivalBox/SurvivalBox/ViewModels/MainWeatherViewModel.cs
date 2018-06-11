@@ -29,25 +29,26 @@ namespace SurvivalBox.ViewModels
 
         private async void LoadWeather()
         {
-            var weather = await WeatherManager.GetWeather();
+            WeatherManager.Instance.UseImperialUnits = true;
+            var weather = await WeatherManager.Instance.GetWeather();
 
-            Debug.WriteLine($"Location: {weather.Location}");
-            Debug.WriteLine($"Temperature: {weather.Main.Temperature} F");
-            Debug.WriteLine($"WindData Speed: {weather.Wind.Speed} mph");
-            Debug.WriteLine($"Humidity: {weather.Main.Humidity} %");
-            Debug.WriteLine($"Visibility: {weather.Visibility}");
-            Debug.WriteLine($"Time of Sunrise: {weather.Sunrise} UTC");
-            Debug.WriteLine($"Time of Sunset: {weather.Sunset} UTC");
+            Debug.WriteLine($"Location: {weather.City}");
+            Debug.WriteLine($"Temperature: {weather.MainData.Temperature} F");
+            Debug.WriteLine($"WindData Speed: {weather.WindData.Speed} mph");
+            Debug.WriteLine($"Humidity: {weather.MainData.Humidity} %");
+            Debug.WriteLine($"Visibility: {weather.WeatherDatas[0].Title}");
+            Debug.WriteLine($"Time of Sunrise: {weather.SystemData.SunriseTime} UTC");
+            Debug.WriteLine($"Time of Sunset: {weather.SystemData.SunsetTime} UTC");
 
             WeatherProperties = new ObservableCollection<WeatherProperty>()
             {
-                new WeatherProperty("Location", weather.Location),
-                new WeatherProperty("Temperature", weather.Main.Temperature + " F"),
-                new WeatherProperty("WindData Speed", weather.Wind.Speed + " mph"),
-                new WeatherProperty("Humidity", weather.Main.Humidity + " %"),
-                new WeatherProperty("Visibility", weather.Visibility),
-                new WeatherProperty("Time of Sunrise", weather.Sunrise + "UTC"),
-                new WeatherProperty("Time of Sunset", weather.Sunset + "UTC")
+                new WeatherProperty("Location", weather.City),
+                new WeatherProperty("Temperature", weather.MainData.Temperature + " F"),
+                new WeatherProperty("WindData Speed", weather.WindData.Speed + " mph"),
+                new WeatherProperty("Humidity", weather.MainData.Humidity + " %"),
+                new WeatherProperty("Visibility", weather.WeatherDatas[0].Title),
+                new WeatherProperty("Time of Sunrise", weather.SystemData.SunriseTime + " UTC"),
+                new WeatherProperty("Time of Sunset", weather.SystemData.SunsetTime + " UTC")
             };
         }
 

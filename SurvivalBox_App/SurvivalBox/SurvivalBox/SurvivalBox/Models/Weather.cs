@@ -6,49 +6,227 @@ namespace SurvivalBox.Models
 {
     public class Weather
     {
-        [JsonProperty("name")]
-        public string Location { get; set; }
+        #region Fields
+
+        [JsonProperty("coord")]
+        public LocationData LocationData { get; set; }
+
+        [JsonProperty("weather")]
+        public List<WeatherData> WeatherDatas { get; set; }
 
         [JsonProperty("main")]
-        public MainData Main { get; set; }
+        public MainData MainData { get; set; }
 
         [JsonProperty("wind")]
-        public WindData Wind { get; set; }
+        public WindData WindData { get; set; }
 
-        [JsonProperty("weather.0.main")]
-        public string Visibility { get; set; }
+        [JsonProperty("clouds")]
+        public CloudData CloudData { get; set; }
 
-        private string _sunrise = String.Empty;
-        [JsonProperty("sys.sunrise")]
-        public string Sunrise { get => _sunrise; set => SetSunTime(ref _sunrise, value); }
+        [JsonProperty("rain")]
+        public RainData RainData { get; set; }
 
-        private string _sunset = String.Empty;
-        [JsonProperty("sys.sunset")]
-        public string Sunset { get => _sunset; set => SetSunTime(ref _sunset, value); }
+        [JsonProperty("snow")]
+        public SnowData SnowData { get; set; }
 
-        private void SetSunTime(ref string sunState, string time)
+        private string _dataTime;
+        /// <summary>
+        /// Time of data calculation, unix, UTC
+        /// </summary>
+        [JsonProperty("dt")]
+        public string DataTime { get => _dataTime; set => CalculateDataTime(ref _dataTime, value); }
+
+        [JsonProperty("sys")]
+        public SystemData SystemData { get; set; }
+
+        /// <summary>
+        /// City name
+        /// </summary>
+        [JsonProperty("name")]
+        public string City { get; set; }
+
+        #endregion
+
+        public void CalculateDataTime(ref string data, string unixTime)
         {
-            var sunStateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            sunState = sunStateTime.AddSeconds(double.Parse(time)).ToString();
+            var dataTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            data = dataTime.AddSeconds(double.Parse(unixTime)).ToString();
         }
     }
 
     public struct MainData
     {
+        /// <summary>
+        /// Temperature. Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
+        /// </summary>
         [JsonProperty("temp")]
         public string Temperature { get; set; }
+        /// <summary>
+        /// Atmospheric pressure (on the sea level, if there is no sea_level or grnd_level data), hPa
+        /// </summary>
+        [JsonProperty("Pressure")]
+        public string Pressure { get; set; }
+        /// <summary>
+        /// Humidity, %
+        /// </summary>
         [JsonProperty("humidity")]
         public string Humidity { get; set; }
+        /// <summary>
+        /// Minimum temperature at the moment. This is deviation from current temp that is possible for large cities
+        /// and megalopolises geographically expanded (use these parameter optionally).
+        /// Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
+        /// </summary>
+        [JsonProperty("temp_min")]
+        public string MinTemperature { get; set; }
+        /// <summary>
+        /// Maximum temperature at the moment. This is deviation from current temp that is possible for large cities
+        /// and megalopolises geographically expanded (use these parameter optionally).
+        /// Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit.
+        /// </summary>
+        [JsonProperty("temp_max")]
+        public string MaxTemperature { get; set; }
+        /// <summary>
+        /// Atmospheric pressure on the sea level, hPa
+        /// </summary>
+        [JsonProperty("sea_level")]
+        public string SeaLevelPressure { get; set; }
+        /// <summary>
+        /// Atmospheric pressure on the ground level, hPa
+        /// </summary>
+        [JsonProperty("grnd_level")]
+        public string GroundLevelPressure { get; set; }
     }
 
     public struct WindData
     {
+        /// <summary>
+        /// Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour.
+        /// </summary>
         [JsonProperty("speed")]
         public string Speed { get; set; }
+        /// <summary>
+        /// Wind direction, degrees (meteorological)
+        /// </summary>
+        [JsonProperty("deg")]
+        public string Degrees { get; set; }
+
+        public enum CardinalDirections
+        {
+            N,
+            NE,
+            E,
+            SE,
+            S,
+            SW,
+            W,
+            NW
+        }
+
+        public CardinalDirections GetWindDirection()
+        {
+            var degrees = double.Parse(Degrees);
+
+            if (degrees <= 33.75)
+                return CardinalDirections.N;
+            if (degrees <= 78.75)
+                return CardinalDirections.NE;
+            if (degrees <= 123.75)
+                return CardinalDirections.E;
+            if (degrees <= 168.75)
+                return CardinalDirections.SE;
+            if (degrees <= 213.75)
+                return CardinalDirections.S;
+            if (degrees <= 258.75)
+                return CardinalDirections.SW;
+            if (degrees <= 303.75)
+                return CardinalDirections.W;
+            if (degrees <= 348.75)
+                return CardinalDirections.NW;
+
+            return CardinalDirections.N;
+        }
+    }
+
+    public struct CloudData
+    {
+        /// <summary>
+        /// Cloudiness, %
+        /// </summary>
+        [JsonProperty("all")]
+        public string Cloudiness { get; set; }
+    }
+
+    public struct RainData
+    {
+        /// <summary>
+        /// Rain volume for the last 3 hours
+        /// </summary>
+        [JsonProperty("3h")]
+        public string Volume { get; set; }
+    }
+
+    public struct SnowData
+    {
+        /// <summary>
+        /// Snow volume for the last 3 hours
+        /// </summary>
+        [JsonProperty("3h")]
+        public string Volume { get; set; }
+    }
+
+    public struct SystemData
+    {
+        /// <summary>
+        /// Country code (GB, JP etc.)
+        /// </summary>
+        [JsonProperty("country")]
+        public string CountryCode { get; set; }
+        /// <summary>
+        /// Sunrise time, unix, UTC
+        /// </summary>
+        [JsonProperty("sunrise")]
+        public string SunriseTime { get => _sunriseTime; set => CalculateSunStateTime(ref _sunriseTime, value); }
+        /// <summary>
+        /// Sunset time, unix, UTC
+        /// </summary>
+        [JsonProperty("sunset")]
+        public string SunsetTime { get => _sunsetTime; set => CalculateSunStateTime(ref _sunsetTime, value); }
+
+        private string _sunriseTime;
+        private string _sunsetTime;
+
+        private void CalculateSunStateTime(ref string sunState, string unixTime)
+        {
+            var sunStateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            sunState = sunStateTime.AddSeconds(double.Parse(unixTime)).ToString();
+        }
     }
 
     public struct WeatherData
     {
-        public List<List<string>> weatherData;
+        /// <summary>
+        /// Group of weather parameters (Rain, Snow, Extreme etc.)
+        /// </summary>
+        [JsonProperty("main")]
+        public string Title { get; set; }
+        /// <summary>
+        /// Weather condition within the group
+        /// </summary>
+        [JsonProperty("description")]
+        public string Description { get; set; }
+    }
+
+    public struct LocationData
+    {
+        /// <summary>
+        /// City geo location, longitude
+        /// </summary>
+        [JsonProperty("lon")]
+        public string Longitude { get; set; }
+        /// <summary>
+        /// City geo location, latitude
+        /// </summary>
+        [JsonProperty("lat")]
+        public string Latitude { get; set; }
     }
 }
