@@ -19,8 +19,20 @@ namespace SurvivalBox.ViewModels
             set => SetProperty(ref _weatherProperties, value);
         }
 
+        public DelegateCommand UnitsToggledCommand { get; set; }
+
+        private bool _useMetricUnits;
+        public bool UseMetricUnits
+        {
+            get => _useMetricUnits;
+            set => SetProperty(ref _useMetricUnits, value);
+        }
+
         public MainWeatherViewModel()
         {
+            UseMetricUnits = true;
+            UnitsToggledCommand = new DelegateCommand(OnUnitsToggled);
+
             using (new ActivityIndicatorScope(this, true))
             {
                 LoadWeather();
@@ -30,26 +42,21 @@ namespace SurvivalBox.ViewModels
         private async void LoadWeather()
         {
             WeatherManager.Instance.UseImperialUnits = true;
-            var weather = await WeatherManager.Instance.GetWeather();
-
-            Debug.WriteLine($"Location: {weather.City}");
-            Debug.WriteLine($"Temperature: {weather.MainData.Temperature} F");
-            Debug.WriteLine($"WindData Speed: {weather.WindData.Speed} mph");
-            Debug.WriteLine($"Humidity: {weather.MainData.Humidity} %");
-            Debug.WriteLine($"Visibility: {weather.WeatherDatas[0].Title}");
-            Debug.WriteLine($"Time of Sunrise: {weather.SystemData.SunriseTime} UTC");
-            Debug.WriteLine($"Time of Sunset: {weather.SystemData.SunsetTime} UTC");
+            var weather = await WeatherManager.Instance.GetWeather(!UseMetricUnits);
 
             WeatherProperties = new ObservableCollection<WeatherProperty>()
             {
-                new WeatherProperty("Location", weather.City),
-                new WeatherProperty("Temperature", weather.MainData.Temperature + " F"),
-                new WeatherProperty("WindData Speed", weather.WindData.Speed + " mph"),
-                new WeatherProperty("Humidity", weather.MainData.Humidity + " %"),
-                new WeatherProperty("Visibility", weather.WeatherDatas[0].Title),
-                new WeatherProperty("Time of Sunrise", weather.SystemData.SunriseTime + " UTC"),
-                new WeatherProperty("Time of Sunset", weather.SystemData.SunsetTime + " UTC")
+                new WeatherProperty("Time of Data", weather.DataTime),
+                new WeatherProperty("Location", $"{weather.City}, {weather.SystemData.CountryCode}\nLon: {weather.LocationData.Longitude}\nLat: {weather.LocationData.Latitude}"),
+                new WeatherProperty("Weather", $"{weather.WeatherData[0].Title}, {weather.WeatherData[0].Description}"),
+                new WeatherProperty("Temperature", $"Current: {weather.MainData.Temperature} {(UseMetricUnits ? "°C" : "F")}\nMin: {weather.MainData.MinTemperature} {(UseMetricUnits ? "°C" : "F")}\nMax: {weather.MainData.MaxTemperature} {(UseMetricUnits ? "°C" : "F")}"),
+                new WeatherProperty("Humidity", $"{weather.MainData.Humidity} %"),
+                new WeatherProperty("Wind", $"Speed: {weather.WindData.Speed} {(UseMetricUnits ? "mps" : "mph")}\nDirection: {weather.WindData.GetWindDirection()}"),
+                new WeatherProperty("Cloudiness", $"{weather.CloudData.Cloudiness} %"),
+                new WeatherProperty("Sun", $"Sunrise: {weather.SystemData.SunriseTime}\nSunset: {weather.SystemData.SunsetTime}")
             };
+
+            IsRefreshing = false;
         }
 
         public struct WeatherProperty
@@ -61,6 +68,14 @@ namespace SurvivalBox.ViewModels
             {
                 Title = title;
                 Content = content;
+            }
+        }
+
+        private void OnUnitsToggled()
+        {
+            using (new ActivityIndicatorScope(this, true))
+            {
+                LoadWeather();
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Newtonsoft.Json;
 
 namespace SurvivalBox.Models
@@ -12,7 +13,7 @@ namespace SurvivalBox.Models
         public LocationData LocationData { get; set; }
 
         [JsonProperty("weather")]
-        public List<WeatherData> WeatherDatas { get; set; }
+        public List<WeatherData> WeatherData { get; set; }
 
         [JsonProperty("main")]
         public MainData MainData { get; set; }
@@ -31,7 +32,7 @@ namespace SurvivalBox.Models
 
         private string _dataTime;
         /// <summary>
-        /// Time of data calculation, unix, UTC
+        /// Time of data calculation
         /// </summary>
         [JsonProperty("dt")]
         public string DataTime { get => _dataTime; set => CalculateDataTime(ref _dataTime, value); }
@@ -50,7 +51,7 @@ namespace SurvivalBox.Models
         public void CalculateDataTime(ref string data, string unixTime)
         {
             var dataTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            data = dataTime.AddSeconds(double.Parse(unixTime)).ToString();
+            data = dataTime.AddSeconds(double.Parse(unixTime)).ToString(CultureInfo.CurrentCulture);
         }
     }
 
@@ -112,14 +113,14 @@ namespace SurvivalBox.Models
 
         public enum CardinalDirections
         {
-            N,
-            NE,
-            E,
-            SE,
-            S,
-            SW,
-            W,
-            NW
+            North,
+            NorthEast,
+            East,
+            SouthEast,
+            South,
+            SouthWest,
+            West,
+            NorthWest
         }
 
         public CardinalDirections GetWindDirection()
@@ -127,23 +128,23 @@ namespace SurvivalBox.Models
             var degrees = double.Parse(Degrees);
 
             if (degrees <= 33.75)
-                return CardinalDirections.N;
+                return CardinalDirections.North;
             if (degrees <= 78.75)
-                return CardinalDirections.NE;
+                return CardinalDirections.NorthEast;
             if (degrees <= 123.75)
-                return CardinalDirections.E;
+                return CardinalDirections.East;
             if (degrees <= 168.75)
-                return CardinalDirections.SE;
+                return CardinalDirections.SouthEast;
             if (degrees <= 213.75)
-                return CardinalDirections.S;
+                return CardinalDirections.South;
             if (degrees <= 258.75)
-                return CardinalDirections.SW;
+                return CardinalDirections.SouthWest;
             if (degrees <= 303.75)
-                return CardinalDirections.W;
+                return CardinalDirections.West;
             if (degrees <= 348.75)
-                return CardinalDirections.NW;
+                return CardinalDirections.NorthWest;
 
-            return CardinalDirections.N;
+            return CardinalDirections.North;
         }
     }
 
@@ -182,12 +183,12 @@ namespace SurvivalBox.Models
         [JsonProperty("country")]
         public string CountryCode { get; set; }
         /// <summary>
-        /// Sunrise time, unix, UTC
+        /// Sunrise time
         /// </summary>
         [JsonProperty("sunrise")]
         public string SunriseTime { get => _sunriseTime; set => CalculateSunStateTime(ref _sunriseTime, value); }
         /// <summary>
-        /// Sunset time, unix, UTC
+        /// Sunset time
         /// </summary>
         [JsonProperty("sunset")]
         public string SunsetTime { get => _sunsetTime; set => CalculateSunStateTime(ref _sunsetTime, value); }
@@ -198,7 +199,7 @@ namespace SurvivalBox.Models
         private void CalculateSunStateTime(ref string sunState, string unixTime)
         {
             var sunStateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            sunState = sunStateTime.AddSeconds(double.Parse(unixTime)).ToString();
+            sunState = sunStateTime.AddSeconds(double.Parse(unixTime)).ToString(CultureInfo.CurrentCulture);
         }
     }
 

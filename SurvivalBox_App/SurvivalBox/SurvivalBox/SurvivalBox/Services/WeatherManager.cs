@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System.Diagnostics;
+using System.Globalization;
 using System.Threading.Tasks;
 using SurvivalBox.Models;
 
@@ -11,12 +12,13 @@ namespace SurvivalBox.Services
 
         private WeatherManager() { }
 
-        public bool UseImperialUnits { get; set; }
+        public bool UseImperialUnits;
 
-        public async Task<Weather> GetWeather()
+        public async Task<Weather> GetWeather(bool imperialUnits)
         {
             // TODO: Make location selectable
-            var queryString = $"http://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&APPID={Constants.OpenWeatherMapKey}&units={(UseImperialUnits ? "imperial" : "metric")}";
+            Debug.WriteLine("Imperial: " + imperialUnits);
+            var queryString = $"http://api.openweathermap.org/data/2.5/weather?lat=48.137&lon=11.576&APPID={Constants.OpenWeatherMapKey}&units={(imperialUnits ? "imperial" : "metric")}";
             var weather = await DataService.GetJSONData<Weather>(queryString).ConfigureAwait(false);
 
             return weather;

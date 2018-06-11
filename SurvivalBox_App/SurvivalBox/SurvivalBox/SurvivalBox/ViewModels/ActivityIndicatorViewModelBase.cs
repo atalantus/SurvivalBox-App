@@ -7,7 +7,7 @@ namespace SurvivalBox.ViewModels
     {
         public DelegateCommand RefreshingCommand { get; set; }
 
-        public ActivityIndicatorViewModelBase()
+        protected ActivityIndicatorViewModelBase()
         {
             RefreshingCommand = new DelegateCommand(OnRefresh);
         }
@@ -17,6 +17,13 @@ namespace SurvivalBox.ViewModels
         {
             get => _activityIndicatorIsActive;
             set => SetProperty(ref _activityIndicatorIsActive, value);
+        }
+
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get => _isRefreshing;
+            set => SetProperty(ref _isRefreshing, value);
         }
 
         protected abstract void OnRefresh();

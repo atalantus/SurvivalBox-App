@@ -36,13 +36,6 @@ namespace SurvivalBox.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
-        private bool _isRefreshing;
-        public bool IsRefreshing
-        {
-            get => _isRefreshing;
-            set => SetProperty(ref _isRefreshing, value);
-        }
-
         private ObservableCollection<TodoItem> _todoItems;
         public ObservableCollection<TodoItem> TodoItems
         {
