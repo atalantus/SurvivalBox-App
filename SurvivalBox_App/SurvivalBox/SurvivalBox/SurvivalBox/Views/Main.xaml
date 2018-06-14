@@ -7,11 +7,11 @@
                   x:Class="SurvivalBox.Views.Main">
 
     <MasterDetailPage.Master>
-        <NavigationPage Title="Master">
+        <NavigationPage Title="Menu">
             <x:Arguments>
                 <ContentPage
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
-             Title="Master">
+             Title="Menu">
                     <StackLayout>
                         <ListView SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                             <ListView.Behaviors>

@@ -4,14 +4,15 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="SurvivalBox.Views.MainWarnings">
+             x:Class="SurvivalBox.Views.MainWarnings"
+             x:Name="Page">
   <Grid>
       <Grid.RowDefinitions>
           <RowDefinition Height="Auto"></RowDefinition>
           <RowDefinition Height="*"></RowDefinition>
       </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0" Padding="20,10,20,0" BackgroundColor="LightGray">
+        <Grid Grid.Row="0" Padding="20,10,20,10" BackgroundColor="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -21,7 +22,7 @@
             <Button Grid.Column="1" VerticalOptions="Center" Text="Change Sorting"></Button>
         </Grid>
 
-        <ListView Grid.Row="1" HasUnevenRows="True" ItemsSource="{Binding Warnings}" SelectedItem="{Binding SelectedWarning, Mode=TwoWay}" Margin="0,10,0,0">
+        <ListView Grid.Row="1" HasUnevenRows="True" ItemsSource="{Binding Warnings}" SelectedItem="{Binding SelectedWarning, Mode=TwoWay}">
             <ListView.Behaviors>
                 <b:EventToCommandBehavior EventName="ItemSelected" 
                                           Command="{Binding WarningSelectedCommand}" />
@@ -36,7 +37,17 @@
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>
                             </Grid.RowDefinitions>
-                            <Label Grid.Row="0" Text="{Binding Title}" Style="{DynamicResource TitleStyle}"></Label>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding Title}" Style="{DynamicResource TitleStyle}"></Label>
+                                <Button Grid.Column="1" HorizontalOptions="End" Text="Delete" BackgroundColor="OrangeRed" TextColor="White" Command="{Binding Path=BindingContext.DeleteWarningCommand, Source={x:Reference Page}}" CommandParameter="{Binding .}"></Button>
+                            </Grid>
+                            
                             <Label Grid.Row="1" Text="{Binding Message}" Style="{DynamicResource SubtitleStyle}"></Label>
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>

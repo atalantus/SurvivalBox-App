@@ -4,5 +4,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SurvivalBox.Views.MainHome">
-  
+  <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+      <Button Text="Add Warning" Command="{Binding AddWarningCommand}" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Accent"></Button>
+  </StackLayout>
 </ContentPage>

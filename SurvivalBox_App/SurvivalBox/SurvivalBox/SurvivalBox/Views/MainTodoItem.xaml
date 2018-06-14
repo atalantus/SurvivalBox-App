@@ -15,7 +15,7 @@
 
         <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding ActivityIndicatorIsActive}" IsRunning="{Binding ActivityIndicatorIsActive}" IsEnabled="True" />
 
-        <StackLayout Grid.Row="0" BackgroundColor="#5ABAFF" Padding="10,30,10,5">
+        <StackLayout Grid.Row="0" BackgroundColor="LightGray" Padding="10,30,10,5">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />

@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace SurvivalBox.Models
 {
+    public delegate void WarningsChangedEventHandler(WarningManager sender);
+
     public class WarningManager
     {
         private static WarningManager _instance;
@@ -13,16 +17,37 @@ namespace SurvivalBox.Models
 
         private WarningManager()
         {
-            Warnings = new ObservableCollection<Warning>()
-            {
-                new Warning("Title01", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-                new Warning("Title02", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-                new Warning("Title03", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-                new Warning("Title04", "Warning sample message! Lorem Ipsum blabla bla.", 5),
-                new Warning("Title05", "Warning sample message! Lorem Ipsum blabla bla.", 5)
-            };
+            Warnings = new ObservableCollection<Warning>();
         }
 
         public ObservableCollection<Warning> Warnings { get; }
+
+        public event WarningsChangedEventHandler WarningsChanged;
+
+        public void AddWarning(Warning newWarning)
+        {
+            try
+            {
+                Warnings.Add(newWarning);
+                WarningsChanged?.Invoke(this);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+        }
+
+        public void RemoveWarning(Warning warning)
+        {
+            try
+            {
+                Warnings.Remove(warning);
+                WarningsChanged?.Invoke(this);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+            }
+        }
     }
 }
