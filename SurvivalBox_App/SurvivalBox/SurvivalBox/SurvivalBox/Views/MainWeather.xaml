@@ -15,7 +15,7 @@
 
         <ActivityIndicator Grid.RowSpan="2" HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsRunning="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsEnabled="True" />
 
-        <Grid Grid.Row="0" Padding="20,10,20,0">
+        <Grid Grid.Row="0" Padding="20,10,20,20" BackgroundColor="LightGray">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -29,7 +29,7 @@
             </Switch>
         </Grid>
 
-        <ListView Margin="0,10,0,0" Grid.Row="1"  VerticalOptions="FillAndExpand" HasUnevenRows="True" IsRefreshing="{Binding IsRefreshing}" IsPullToRefreshEnabled="True" ItemsSource="{Binding WeatherProperties}">
+        <ListView Grid.Row="1"  VerticalOptions="FillAndExpand" HasUnevenRows="True" IsRefreshing="{Binding IsRefreshing}" IsPullToRefreshEnabled="True" ItemsSource="{Binding WeatherProperties}">
             <ListView.Behaviors>
                 <b:EventToCommandBehavior EventName="Refreshing"
                                           Command="{Binding RefreshingCommand}" />

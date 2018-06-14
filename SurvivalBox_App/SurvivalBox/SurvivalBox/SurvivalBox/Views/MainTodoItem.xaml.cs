@@ -22,7 +22,7 @@ namespace SurvivalBox.Views
             base.OnAppearing();
 
             // Set syncItems to true in order to synchronize the data on startup when running in offline mode
-            await _vm.RefreshItems(true, true);
+            await _vm.LoadItems(true, true);
         }
     }
 }

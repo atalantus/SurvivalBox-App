@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -15,10 +16,7 @@ namespace SurvivalBox.ViewModels
     {
         #region Fields
 
-
-
         public DelegateCommand AddItemCommand { get; set; }
-        public DelegateCommand SyncCommand { get; set; }
         public DelegateCommand ItemSelectedCommand { get; set; }
         public DelegateCommand<object> CompleteCommand { get; set; }
 
@@ -46,18 +44,13 @@ namespace SurvivalBox.ViewModels
         private TodoItemManager _manager;
         private IPageDialogService _dialogService;
 
-
-
         #endregion
 
         #region Methods
 
-        
-
         public MainTodoItemViewModel(IPageDialogService dialogService)
         {
             AddItemCommand = new DelegateCommand(OnAddItem);
-            SyncCommand = new DelegateCommand(SyncItems);
             ItemSelectedCommand = new DelegateCommand(OnItemSelected);
             CompleteCommand = new DelegateCommand<object>(Complete);
 
@@ -67,8 +60,6 @@ namespace SurvivalBox.ViewModels
 
         private async void OnAddItem()
         {
-            Debug.WriteLine("OnAddItem");
-
             if (!string.IsNullOrWhiteSpace(NewItemName))
             {
                 var todo = new TodoItem { Name = NewItemName };
@@ -80,34 +71,13 @@ namespace SurvivalBox.ViewModels
             //TODO: https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/triggers#event
         }
 
-        protected override async void OnRefresh()
+        protected override void OnRefresh()
         {
-            Debug.WriteLine("OnRefresh");
-
-            Exception error = null;
-            try
-            {
-                await RefreshItems(false, true);
-            }
-            catch (Exception ex)
-            {
-                error = ex;
-            }
-            finally
-            {
-                IsRefreshing = false;
-            }
-
-            if (error != null)
-            {
-                await _dialogService.DisplayAlertAsync("Refresh Error", "Couldn't refresh data (" + error.Message + ")", "OK");
-            }
+            RefreshItems(false, true);
         }
 
         private async void OnItemSelected()
         {
-            Debug.WriteLine("OnItemSelected");
-
             if (Device.RuntimePlatform != Device.iOS && SelectedItem != null)
             {
                 // Not iOS - the swipe-to-delete is discoverable there
@@ -121,8 +91,6 @@ namespace SurvivalBox.ViewModels
                     // Windows, not all platforms support the Context Actions yet
                     if (await _dialogService.DisplayAlertAsync("Mark completed?", "Do you wish to complete " + SelectedItem.Name + "?", "Complete", "Cancel"))
                     {
-                        Debug.WriteLine($"Name: {SelectedItem.Name} | ID: {SelectedItem.Id} | Version: {SelectedItem.Version}");
-
                         await CompleteItem(SelectedItem);
                     }
                 }
@@ -134,12 +102,8 @@ namespace SurvivalBox.ViewModels
 
         private async void Complete(object item)
         {
-            Debug.WriteLine("Complete");
-
             if (item is TodoItem todoItem)
             {
-                Debug.WriteLine($"Name: {todoItem.Name} | ID: {todoItem.Id} | Version: {todoItem.Version}");
-
                 await CompleteItem(todoItem);
             }
         }
@@ -154,26 +118,40 @@ namespace SurvivalBox.ViewModels
         async Task CompleteItem(TodoItem item)
         {
             item.Done = true;
-            Debug.WriteLine("Item Done");
             await _manager.SaveTaskAsync(item);
-            Debug.WriteLine("Save task");
             TodoItems = await _manager.GetTodoItemsAsync();
         }
 
-        async void SyncItems()
+        private async void RefreshItems(bool showActivityIndicator, bool syncItems)
         {
-            await RefreshItems(true, true);
+            try
+            {
+                await LoadItems(showActivityIndicator, syncItems);
+            }
+            catch (HttpRequestException e)
+            {
+                Debug.WriteLine(e);
+                await _dialogService.DisplayAlertAsync("Refresh Error",
+                    "Make sure you have a working network connection!", "OK");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                await _dialogService.DisplayAlertAsync("Refresh Error", "Couldn't refresh data (" + e.Message + ")", "OK");
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
         }
 
-        public async Task RefreshItems(bool showActivityIndicator, bool syncItems)
+        public async Task LoadItems(bool showActivityIndicator, bool syncItems)
         {
             using (new ActivityIndicatorScope(this, showActivityIndicator))
             {
                 TodoItems = await _manager.GetTodoItemsAsync(syncItems);
             }
         }
-
-
 
         #endregion
     }

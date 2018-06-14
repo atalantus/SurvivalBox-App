@@ -25,7 +25,6 @@
                 <Entry Text="{Binding NewItemName}" Placeholder="Enter new Todo item here" />
                 <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
                     <Button Text="+" MinimumHeightRequest="30" Command="{Binding AddItemCommand}" />
-                    <Button Text="Sync" BackgroundColor="Lime" Command="{Binding SyncCommand}" />
                 </StackLayout>
             </Grid>
         </StackLayout>
