@@ -18,7 +18,7 @@ namespace SurvivalBox.ViewModels
 
 	    private void AddWarning()
 	    {
-            WarningManager.Instance.AddWarning(new Warning("Title", "Warning sample message! Lorem Ipsum blabla bla.", 2));
+            WarningManager.Instance.AddWarning(new Warning("Title", "Warning sample message! Lorem Ipsum blabla bla.", 1));
 	    }
     }
 }

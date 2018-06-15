@@ -8,6 +8,8 @@ using System.Linq;
 using Prism.Navigation;
 using Prism.Services;
 using SurvivalBox.Models;
+using Xamarin.Forms;
+using MenuItem = SurvivalBox.Models.MenuItem;
 
 namespace SurvivalBox.ViewModels
 {
@@ -30,6 +32,20 @@ namespace SurvivalBox.ViewModels
 	    {
 	        get => _warningsText;
 	        set => SetProperty(ref _warningsText, value);
+	    }
+
+	    private Color _warningsBackgroundColor = Color.FromHex("#a5d6a7");
+        public Color WarningsBackgroundColor
+        {
+            get => _warningsBackgroundColor;
+            set => SetProperty(ref _warningsBackgroundColor, value);
+        }
+
+	    private Color _warningsTextColor = Color.Black;
+	    public Color WarningsTextColor
+        {
+	        get => _warningsTextColor;
+	        set => SetProperty(ref _warningsTextColor, value);
 	    }
 
         public DelegateCommand ItemSelectedCommand { get; set; }
@@ -71,6 +87,54 @@ namespace SurvivalBox.ViewModels
 	    private void On_WarningsChanged(WarningManager sender)
 	    {
 	        WarningsText = sender.Warnings.Count == 1 ? "1 Warning!" : $"{sender.Warnings.Count} Warnings!";
-        }
+	        var dangerLevel = sender.Warnings.Select(w => w.Level).Sum();
+	        switch (dangerLevel)
+	        {
+                case 0:
+                    WarningsBackgroundColor = Color.FromHex("#a5d6a7");
+                    WarningsTextColor = Color.Black;
+                    break;
+	            case 1:
+	                WarningsBackgroundColor = Color.FromHex("#ffebee");
+	                WarningsTextColor = Color.Black;
+                    break;
+	            case 2:
+	                WarningsBackgroundColor = Color.FromHex("#ffcdd2");
+	                WarningsTextColor = Color.Black;
+                    break;
+	            case 3:
+	                WarningsBackgroundColor = Color.FromHex("#ef9a9a");
+	                WarningsTextColor = Color.Black;
+                    break;
+	            case 4:
+	                WarningsBackgroundColor = Color.FromHex("#e57373");
+	                WarningsTextColor = Color.Black;
+                    break;
+	            case 5:
+	                WarningsBackgroundColor = Color.FromHex("#ef5350");
+	                WarningsTextColor = Color.Black;
+                    break;
+	            case 6:
+	                WarningsBackgroundColor = Color.FromHex("#f44336");
+	                WarningsTextColor = Color.Black;
+                    break;
+	            case 7:
+	                WarningsBackgroundColor = Color.FromHex("#e53935");
+	                WarningsTextColor = Color.Black;
+                    break;
+	            case 8:
+	                WarningsBackgroundColor = Color.FromHex("#d32f2f");
+	                WarningsTextColor = Color.White;
+                    break;
+	            case 9:
+	                WarningsBackgroundColor = Color.FromHex("#c62828");
+	                WarningsTextColor = Color.White;
+                    break;
+	            case 10:
+	                WarningsBackgroundColor = Color.FromHex("#b71c1c");
+	                WarningsTextColor = Color.White;
+                    break;
+            }
+	    }
     }
 }

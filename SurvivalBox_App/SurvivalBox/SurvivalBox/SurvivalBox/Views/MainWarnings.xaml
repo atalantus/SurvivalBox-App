@@ -6,11 +6,11 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SurvivalBox.Views.MainWarnings"
              x:Name="Page">
-  <Grid>
-      <Grid.RowDefinitions>
-          <RowDefinition Height="Auto"></RowDefinition>
-          <RowDefinition Height="*"></RowDefinition>
-      </Grid.RowDefinitions>
+    <Grid RowSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" Padding="20,10,20,10" BackgroundColor="LightGray">
             <Grid.ColumnDefinitions>
@@ -45,9 +45,9 @@
                                 </Grid.ColumnDefinitions>
 
                                 <Label Grid.Column="0" Text="{Binding Title}" Style="{DynamicResource TitleStyle}"></Label>
-                                <Button Grid.Column="1" HorizontalOptions="End" Text="Delete" BackgroundColor="OrangeRed" TextColor="White" Command="{Binding Path=BindingContext.DeleteWarningCommand, Source={x:Reference Page}}" CommandParameter="{Binding .}"></Button>
+                                <Button Grid.Column="1" HorizontalOptions="End" VerticalOptions="Start" Text="Delete" BackgroundColor="OrangeRed" TextColor="White" Command="{Binding Path=BindingContext.DeleteWarningCommand, Source={x:Reference Page}}" CommandParameter="{Binding .}"></Button>
                             </Grid>
-                            
+
                             <Label Grid.Row="1" Text="{Binding Message}" Style="{DynamicResource SubtitleStyle}"></Label>
                             <Grid Grid.Row="2">
                                 <Grid.ColumnDefinitions>
