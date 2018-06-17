@@ -3,6 +3,8 @@ using Android.Content.PM;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using SurvivalBox.Droid.Services;
+using SurvivalBox.Services;
 
 namespace SurvivalBox.Droid
 {
@@ -25,7 +27,7 @@ namespace SurvivalBox.Droid
     {
         public void RegisterTypes(IContainerRegistry container)
         {
-            // Register any platform specific implementations
+            container.Register<ISaveAndLoad, SaveAndLoad_Android>();
         }
     }
 }

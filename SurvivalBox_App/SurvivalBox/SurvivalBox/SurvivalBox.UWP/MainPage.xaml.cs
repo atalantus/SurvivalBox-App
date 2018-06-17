@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using SurvivalBox.Services;
+using SurvivalBox.UWP.Services;
 
 namespace SurvivalBox.UWP
 {
@@ -31,7 +33,7 @@ namespace SurvivalBox.UWP
     {
         public void RegisterTypes(IContainerRegistry container)
         {
-
+            container.Register<ISaveAndLoad, SaveAndLoad_UWP>();
         }
     }
 }
