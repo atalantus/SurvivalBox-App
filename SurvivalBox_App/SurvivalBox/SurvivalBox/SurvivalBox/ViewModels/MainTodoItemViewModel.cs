@@ -137,7 +137,7 @@ namespace SurvivalBox.ViewModels
             catch (Exception e)
             {
                 Debug.WriteLine(e);
-                await _dialogService.DisplayAlertAsync("Refresh Error", $"{e.GetType().Name}: {e.Message}", "OK");
+                await _dialogService.DisplayAlertAsync("Refresh Error", "Couldn't refresh data (" + e.Message + ")", "OK");
             }
             finally
             {
