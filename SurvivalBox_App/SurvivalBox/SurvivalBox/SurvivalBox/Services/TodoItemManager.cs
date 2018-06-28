@@ -12,39 +12,21 @@ namespace SurvivalBox.Services
 {
     public class TodoItemManager
     {
-        static TodoItemManager defaultInstance = new TodoItemManager();
-        MobileServiceClient client;
-        IMobileServiceSyncTable<TodoItem> todoTable;
+        private static TodoItemManager _instance;
+        public static TodoItemManager Instance => _instance ?? (_instance = new TodoItemManager());
+        private ServerConnection _serverConnection;
+        private IMobileServiceSyncTable<TodoItem> _todoTable;
 
         private TodoItemManager()
-        {
-            this.client = new MobileServiceClient(Constants.ApplicationURL);
-            var store = new MobileServiceSQLiteStore("localstore.db");
-            store.DefineTable<TodoItem>();
-            this.client.SyncContext.InitializeAsync(store);
-            this.todoTable = client.GetSyncTable<TodoItem>();
-        }
-
-        public static TodoItemManager DefaultManager
-        {
-            get
-            {
-                return defaultInstance;
-            }
-            private set
-            {
-                defaultInstance = value;
-            }
-        }
-
-        public MobileServiceClient CurrentClient
-        {
-            get { return client; }
-        }
-
-        public bool IsOfflineEnabled
-        {
-            get { return todoTable is Microsoft.WindowsAzure.MobileServices.Sync.IMobileServiceSyncTable<TodoItem>; }
+        {  
+            Debug.WriteLine("Initializing TodoItemManager");
+            _serverConnection = ServerConnection.DefaultConnection;
+            Debug.WriteLine("Referenced Server Connection");
+            _serverConnection.LocalDatabase.DefineTable<TodoItem>();
+            Debug.WriteLine("Created TodoItem table in local database");
+            _serverConnection.Client.SyncContext.InitializeAsync(_serverConnection.LocalDatabase);
+            Debug.WriteLine("Synced local database");
+            _todoTable = _serverConnection.Client.GetSyncTable<TodoItem>();
         }
 
         public async Task<ObservableCollection<TodoItem>> GetTodoItemsAsync(bool syncItems = false)
@@ -55,7 +37,7 @@ namespace SurvivalBox.Services
                 {
                     await this.SyncAsync();
                 }
-                IEnumerable<TodoItem> items = await todoTable
+                IEnumerable<TodoItem> items = await _todoTable
                                     .Where(todoItem => !todoItem.Done)
                                     .ToEnumerableAsync();
 
@@ -78,12 +60,12 @@ namespace SurvivalBox.Services
             if (item.Id == null)
             {
                 Debug.WriteLine("New Item");
-                await todoTable.InsertAsync(item);
+                await _todoTable.InsertAsync(item);
             }
             else
             {
                 Debug.WriteLine("Update Item");
-                await todoTable.UpdateAsync(item);
+                await _todoTable.UpdateAsync(item);
             }
         }
 
@@ -93,13 +75,13 @@ namespace SurvivalBox.Services
 
             try
             {
-                await this.client.SyncContext.PushAsync();
+                await _serverConnection.Client.SyncContext.PushAsync();
 
-                await this.todoTable.PullAsync(
+                await _todoTable.PullAsync(
                     //The first parameter is a query name that is used internally by the client SDK to implement incremental sync.
                     //Use a different query name for each unique query in your program
                     "allTodoItems",
-                    this.todoTable.CreateQuery());
+                    _todoTable.CreateQuery());
             }
             catch (MobileServicePushFailedException exc)
             {

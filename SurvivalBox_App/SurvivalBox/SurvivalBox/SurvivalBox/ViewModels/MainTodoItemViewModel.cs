@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Prism.AppModel;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services;
@@ -12,7 +13,7 @@ using Xamarin.Forms;
 
 namespace SurvivalBox.ViewModels
 {
-    public class MainTodoItemViewModel : ActivityIndicatorViewModelBase
+    public class MainTodoItemViewModel : ActivityIndicatorViewModelBase, IPageLifecycleAware
     {
         #region Fields
 
@@ -54,7 +55,6 @@ namespace SurvivalBox.ViewModels
             ItemSelectedCommand = new DelegateCommand(OnItemSelected);
             CompleteCommand = new DelegateCommand<object>(Complete);
 
-            _manager = TodoItemManager.DefaultManager;
             _dialogService = dialogService;
         }
 
@@ -154,5 +154,20 @@ namespace SurvivalBox.ViewModels
         }
 
         #endregion
+
+        public async void OnAppearing()
+        {
+            using (new ActivityIndicatorScope(this, true))
+            {
+                _manager = await Task.Run(() => TodoItemManager.Instance);
+                // Set syncItems to true in order to synchronize the data on startup when running in offline mode
+                TodoItems = await _manager.GetTodoItemsAsync(true);
+            }
+        }
+
+        public void OnDisappearing()
+        {
+           
+        }
     }
 }

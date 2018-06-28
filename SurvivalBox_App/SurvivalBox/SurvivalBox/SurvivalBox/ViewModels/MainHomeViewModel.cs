@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SurvivalBox.Models;
+using SurvivalBox.Services;
 
 namespace SurvivalBox.ViewModels
 {
@@ -14,6 +15,8 @@ namespace SurvivalBox.ViewModels
         public MainHomeViewModel()
         {
             AddWarningCommand = new DelegateCommand(AddWarning);
+
+            var connection = ServerConnection.DefaultConnection;
         }
 
 	    private void AddWarning()
