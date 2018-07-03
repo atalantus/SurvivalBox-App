@@ -4,7 +4,34 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SurvivalBox.Views.MainHome">
-  <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-      <Button Text="Add Warning" Command="{Binding AddWarningCommand}" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Accent"></Button>
-  </StackLayout>
+    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Button Text="Add Warning" Command="{Binding AddWarningCommand}" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Accent"></Button>
+
+        <Button Margin="0,15,0,0" Text="{Binding SessionStatus}" Command="{Binding ControlSessionCommand}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="200" WidthRequest="200" BorderRadius="100"></Button>
+        <Label Text="{Binding SessionInfoLabelBig}" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center"></Label>
+        <Label Text="{Binding SessionInfoLabelSmall}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="Center"></Label>
+
+        <Button Margin="0,15,0,0" WidthRequest="125" HeightRequest="50" Text="REQUEST HELP!" BackgroundColor="DarkRed" TextColor="White" Command="{Binding RequestHelpCommand}"></Button>
+
+        <ListView HasUnevenRows="True" ItemsSource="{Binding OldSessions}">
+            <ListView.Header>
+                <Label Text="Old Sessions" Style="{DynamicResource TitleStyle}"></Label>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="Start"></Label>
+                            <Label Grid.Column="1" Text="{Binding StartDateString}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="End"></Label>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
