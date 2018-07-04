@@ -33,8 +33,6 @@ namespace SurvivalBox.Services
         {
             if (CurSession == null)
             {
-                session.CurState = Session.States.ACTIVE;
-                session.StartDate = DateTime.UtcNow;
                 await _sessionTable.InsertAsync(session);
                 CurSession = session;
             }

@@ -40,19 +40,10 @@ namespace SurvivalBox.Models
 
         public string StartDateString => GetStartDate();
 
-        public Session(string name)
-        {
-            Name = name;
-            Id = null;
-            Done = false;
-            ActiveDuration = new TimeSpan(0);
-            EndDate = null;
-        }
-
         public string GetStartDate()
         {
             // TODO: Check for settings
-            return StartDate.ToLocalTime().ToString(CultureInfo.CurrentCulture);
+            return StartDate.ToLocalTime().Date.ToString("d");
         }
     }
 }
