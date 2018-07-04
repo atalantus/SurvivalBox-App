@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
+using SurvivalBox.Models;
 
 namespace SurvivalBox.Services
 {
@@ -20,6 +21,10 @@ namespace SurvivalBox.Services
             Debug.WriteLine("Created Client");
             LocalDatabase = new MobileServiceSQLiteStore("survivalBox.db");
             Debug.WriteLine("Created local database");
+            LocalDatabase.DefineTable<TodoItem>();
+            Debug.WriteLine("Created TodoItem table");
+            LocalDatabase.DefineTable<Session>();
+            Debug.WriteLine("Created Session table");
         }
     }
 }

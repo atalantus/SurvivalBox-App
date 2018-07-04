@@ -22,8 +22,6 @@ namespace SurvivalBox.Services
             Debug.WriteLine("Initializing SessionManager");
             _serverConnection = ServerConnection.DefaultConnection;
             Debug.WriteLine("Referenced Server Connection");
-            _serverConnection.LocalDatabase.DefineTable<Session>();
-            Debug.WriteLine("Created Session table in local database");
             _serverConnection.Client.SyncContext.InitializeAsync(_serverConnection.LocalDatabase);
             Debug.WriteLine("Synced local database");
             _sessionTable = _serverConnection.Client.GetSyncTable<Session>();
@@ -34,22 +32,24 @@ namespace SurvivalBox.Services
             if (CurSession == null)
             {
                 await _sessionTable.InsertAsync(session);
+
                 CurSession = session;
             }
             else
                 throw new Exception("Trying to create a new session while old one is still available!");
         }
 
-        public async Task PauseSession(bool continueSession = false)
+        public async Task UpdateSession(Session session)
         {
-            CurSession.CurState = (continueSession) ? Session.States.ACTIVE : Session.States.STOPPED;
-            // TODO: Pause duration
-            await _sessionTable.UpdateAsync(CurSession);
+            if (session.Id != null)
+                await _sessionTable.UpdateAsync(session);
         }
 
         public async Task EndSession()
         {
+            CurSession.CancelTimer = true;
             CurSession.CurState = Session.States.ENDED;
+            CurSession.EndDate = DateTime.UtcNow;
             CurSession.Done = true;
             await _sessionTable.UpdateAsync(CurSession);
             CurSession = null;

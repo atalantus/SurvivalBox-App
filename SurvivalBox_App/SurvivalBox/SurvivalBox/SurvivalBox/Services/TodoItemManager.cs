@@ -22,8 +22,6 @@ namespace SurvivalBox.Services
             Debug.WriteLine("Initializing TodoItemManager");
             _serverConnection = ServerConnection.DefaultConnection;
             Debug.WriteLine("Referenced Server Connection");
-            _serverConnection.LocalDatabase.DefineTable<TodoItem>();
-            Debug.WriteLine("Created TodoItem table in local database");
             _serverConnection.Client.SyncContext.InitializeAsync(_serverConnection.LocalDatabase);
             Debug.WriteLine("Synced local database");
             _todoTable = _serverConnection.Client.GetSyncTable<TodoItem>();

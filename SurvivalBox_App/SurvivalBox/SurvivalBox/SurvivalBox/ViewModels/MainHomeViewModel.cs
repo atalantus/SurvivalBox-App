@@ -12,11 +12,11 @@ using Xamarin.Forms;
 
 namespace SurvivalBox.ViewModels
 {
-	public class MainHomeViewModel : BindableBase
-	{
+    public class MainHomeViewModel : BindableBase
+    {
         #region Fields
 
-	    private readonly IPageDialogService _dialogService;
+        private readonly IPageDialogService _dialogService;
 
         public DelegateCommand ControlSessionCommand { get; set; }
         public DelegateCommand AddWarningCommand { get; set; }
@@ -29,61 +29,61 @@ namespace SurvivalBox.ViewModels
             set => SetProperty(ref _sessionStatus, value);
         }
 
-	    private string _sessionInfoLabelBig = "Start a new session!";
-	    public string SessionInfoLabelBig
+        private string _sessionInfoLabelBig = "Start a new session!";
+        public string SessionInfoLabelBig
         {
-	        get => _sessionInfoLabelBig;
-	        set => SetProperty(ref _sessionInfoLabelBig, value);
-	    }
+            get => _sessionInfoLabelBig;
+            set => SetProperty(ref _sessionInfoLabelBig, value);
+        }
 
-	    private string _sessionInfoLabelSmall = "2:13";
-	    public string SessionInfoLabelSmall
+        private string _sessionInfoLabelSmall;
+        public string SessionInfoLabelSmall
         {
-	        get => _sessionInfoLabelSmall;
-	        set => SetProperty(ref _sessionInfoLabelSmall, value);
-	    }
+            get => _sessionInfoLabelSmall;
+            set => SetProperty(ref _sessionInfoLabelSmall, value);
+        }
 
-	    private ObservableCollection<Session> _oldSessions;
-	    public ObservableCollection<Session> OldSessions
+        private ObservableCollection<Session> _oldSessions;
+        public ObservableCollection<Session> OldSessions
         {
-	        get => _oldSessions;
-	        set => SetProperty(ref _oldSessions, value);
-	    }
+            get => _oldSessions;
+            set => SetProperty(ref _oldSessions, value);
+        }
 
-	    private Color _sessionBackgroundColor = Color.MediumSeaGreen;
-	    public Color SessionBackgroundColor
+        private Color _sessionBackgroundColor = Color.MediumSeaGreen;
+        public Color SessionBackgroundColor
         {
-	        get => _sessionBackgroundColor;
-	        set => SetProperty(ref _sessionBackgroundColor, value);
-	    }
+            get => _sessionBackgroundColor;
+            set => SetProperty(ref _sessionBackgroundColor, value);
+        }
 
         private string _infoTitleText = "IMPORTANT!";
-	    public string InfoTitleText
+        public string InfoTitleText
         {
-	        get => _infoTitleText;
-	        set => SetProperty(ref _infoTitleText, value);
-	    }
+            get => _infoTitleText;
+            set => SetProperty(ref _infoTitleText, value);
+        }
 
-	    private string _infoBodyText = "Hello I'm important!";
-	    public string InfoBodyText
+        private string _infoBodyText = "Hello I'm important!";
+        public string InfoBodyText
         {
-	        get => _infoBodyText;
-	        set => SetProperty(ref _infoBodyText, value);
-	    }
+            get => _infoBodyText;
+            set => SetProperty(ref _infoBodyText, value);
+        }
 
-	    private bool _warningIsVisible = false;
+        private bool _warningIsVisible = false;
         public bool WarningIsVisible
         {
             get => _warningIsVisible;
             set => SetProperty(ref _warningIsVisible, value);
         }
 
-	    private bool _timerIsVisible = false;
-	    public bool TimerIsVisible
+        private bool _timerIsVisible = false;
+        public bool TimerIsVisible
         {
-	        get => _timerIsVisible;
-	        set => SetProperty(ref _timerIsVisible, value);
-	    }
+            get => _timerIsVisible;
+            set => SetProperty(ref _timerIsVisible, value);
+        }
 
         #endregion
 
@@ -97,70 +97,87 @@ namespace SurvivalBox.ViewModels
 
             var connection = ServerConnection.DefaultConnection;
 
-            OldSessions = new ObservableCollection<Session>()
-            {
-                new Session() {Name = "Mount Everest"},
-                new Session() {Name = "K2"},
-                new Session() {Name = "Kangchenjunga"},
-                new Session() {Name = "Lhotse"}
-            };
+            LoadCurSession();
+            LoadOldSessions();
         }
 
-	    private void AddWarning()
-	    {
+        // HACK
+        private void AddWarning()
+        {
             WarningManager.Instance.AddWarning(new Warning(WarningTypes.DEHYDRATION, "Title", "Warning sample message! Lorem Ipsum blabla bla.", 1));
-	    }
+        }
 
-	    private async void ControlSession()
-	    {
-	        if (SessionManager.Instance.CurSession == null)
-	        {
-                // Star new
-	            var name = "SessionName";
-	            var newSession = new Session()
-	            {
-                    Name = name,
-	                CurState = Session.States.ACTIVE,
-	                StartDate = DateTime.UtcNow
-	            };
-                await SessionManager.Instance.CreateSession(newSession);
-	            SessionStatus = "END";
-	            SessionBackgroundColor = Color.IndianRed;
-	            SessionInfoLabelBig = name;
-	            TimerIsVisible = true;
-	            SessionInfoLabelSmall = "00:00:00";
-
-                CountSessionTime();
-	        } else
-	        {
-	            // End
-    
-	        }
-	    }
-
-	    private void RequestHelp()
-	    {
-
-	    }
-
-	    private void CountSessionTime()
-	    {
-	        var startTime = SessionManager.Instance.CurSession.StartDate;
-
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+        private async void ControlSession()
+        {
+            if (SessionManager.Instance.CurSession == null)
             {
-                if (SessionManager.Instance.CurSession != null)
-                {
-                    Debug.WriteLine($"StartTime: {startTime.Date} | Now: {DateTime.UtcNow.Date}");
-                    var time = DateTime.UtcNow - startTime.ToUniversalTime();
-                    SessionInfoLabelSmall = time.ToString(@"hh\:mm\:ss");
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            });
-	    }
+                // Start new
+                var sampleName = "Session01";
+                var newSession = new Session() { Name = sampleName, StartDate = DateTime.UtcNow };
+                await SessionManager.Instance.CreateSession(newSession);
+                SessionStatus = "END";
+                SessionBackgroundColor = Color.IndianRed;
+                SessionInfoLabelBig = sampleName;
+                TimerIsVisible = true;
+                SessionInfoLabelSmall = "00:00:00";
+                SessionManager.Instance.CurSession.UpdatedTimer += On_TimerChanged;
+                SessionManager.Instance.CurSession.StartSessionTimer();
+            }
+            else
+            {
+                // End
+                SessionStatus = "START";
+                SessionBackgroundColor = Color.MediumSeaGreen;
+                SessionInfoLabelBig = "Start a new session!";
+                TimerIsVisible = false;
+
+                SessionManager.Instance.CurSession.UpdatedTimer -= On_TimerChanged;
+                await SessionManager.Instance.EndSession();
+            }
+        }
+
+        private void RequestHelp()
+        {
+
+        }
+
+        private void LoadCurSession()
+        {
+            if (SessionManager.Instance.CurSession != null)
+            {
+                SessionManager.Instance.CurSession.UpdatedTimer += On_TimerChanged;
+                SessionInfoLabelBig = SessionManager.Instance.CurSession.Name;
+                TimerIsVisible = true;
+                SessionInfoLabelSmall = SessionManager.Instance.CurSession.GetCurDuration();
+                SessionStatus = "END";
+                SessionBackgroundColor = Color.IndianRed;
+            }
+            else
+            {
+                // No session to load
+            }
+        }
+
+        private void On_TimerChanged(Session sender, string time)
+        {
+            TimerIsVisible = true;
+            SessionInfoLabelSmall = time;
+        }
+
+        private void LoadOldSessions()
+        {
+            //TODO: Load old sessions from database
+
+            OldSessions = new ObservableCollection<Session>()
+            {
+                new Session() {Name = "Mount Everest", StartDate = new DateTime(2017, 04, 02)},
+                new Session() {Name = "K2", StartDate = new DateTime(2015, 08, 21)},
+                new Session() {Name = "Kangchenjunga", StartDate = new DateTime(2008, 01, 01)},
+                new Session() {Name = "Lhotse", StartDate = new DateTime(2005, 09, 28)}
+            };
+        }
     }
 }
+
+
+

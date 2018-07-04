@@ -1,16 +1,20 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
+using SurvivalBox.Services;
+using Xamarin.Forms;
 
 namespace SurvivalBox.Models
 {
+    public delegate void UpdatedTimerEventHandler(Session sender, string time);
+
     public class Session
     {
         public enum States
         {
             ACTIVE,
-            STOPPED,
             ENDED
         }
 
@@ -29,9 +33,6 @@ namespace SurvivalBox.Models
         [JsonProperty(PropertyName = "startDate")]
         public DateTime StartDate { get; set; }
 
-        [JsonProperty(PropertyName = "duration")]
-        public TimeSpan ActiveDuration { get; set; }
-
         [JsonProperty(PropertyName = "endDate")]
         public DateTime? EndDate { get; set; }
 
@@ -44,6 +45,40 @@ namespace SurvivalBox.Models
         {
             // TODO: Check for settings
             return StartDate.ToLocalTime().Date.ToString("d");
+        }
+
+        public bool CancelTimer { get; set; }
+        public event UpdatedTimerEventHandler UpdatedTimer;
+        private string _duration;
+
+        public void StartSessionTimer()
+        {
+            CountSessionTime();
+        }
+
+        public string GetCurDuration()
+        {
+            return _duration;
+        }
+
+        private void CountSessionTime()
+        {
+            Device.StartTimer(TimeSpan.FromMilliseconds(500), () =>
+            {
+                if (!CancelTimer)
+                {
+                    Debug.WriteLine($"Now: {DateTime.UtcNow.ToString("T")} | Start: {StartDate.ToUniversalTime().ToString("T")}");
+                    var time = DateTime.UtcNow - StartDate.ToUniversalTime();
+                    _duration = time.ToString(@"hh\:mm\:ss");
+                    UpdatedTimer?.Invoke(this, _duration);
+                    return true;
+                }
+                else
+                {
+                    CancelTimer = false;
+                    return false;
+                }
+            });
         }
     }
 }
