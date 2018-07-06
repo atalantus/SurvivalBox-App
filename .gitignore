@@ -288,5 +288,5 @@ __pycache__/
 *.xsd.cs
 
 # API Keys
-/SurvivalBox_App/SurvivalBox/SurvivalBox/SurvivalBox/Services/b.cs
+/SurvivalBox_App/SurvivalBox/SurvivalBox/SurvivalBox/Services/Constants.cs
 /SurvivalBox_App/SurvivalBox/SurvivalBox/SurvivalBox.UWP/UWP_Keys.cs
