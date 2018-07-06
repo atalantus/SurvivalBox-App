@@ -4,7 +4,7 @@
   <mp:PhoneIdentity PhoneProductId="31e6402e-0407-4419-a6c3-7c6d18576017" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>SurvivalBox</DisplayName>
-    <PublisherDisplayName>BLagunas</PublisherDisplayName>
+    <PublisherDisplayName>Gruppe6</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

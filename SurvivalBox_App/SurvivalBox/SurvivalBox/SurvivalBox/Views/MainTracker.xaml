@@ -9,7 +9,6 @@
     <ContentPage Title="Map">
         <maps:Map WidthRequest="320" HeightRequest="200"
                   x:Name="TrackerMap"
-                  IsShowingUser="true"
                   MapType="Hybrid"
         />
     </ContentPage>

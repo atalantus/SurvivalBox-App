@@ -3,6 +3,6 @@
     public static class UWP_Keys
     {
         public static string MapKey =
-            "ENTER_MAPS_KEY";
+            "DoxaW8usJcQ1jLOOQOrc~Hh0Qhxpu6QGHt9kNZD6qgQ~AvlgWOv4E07UMlbFaGsJ1qHXk5zUC8DkEVTu9EXg1fqxClfPKMZxNm0qXUhcyU81";
     }
 }

@@ -2,7 +2,7 @@
 {
     public static class Constants
     {
-        public static string ApplicationURL = @"ENTER_URL_HERE";
-        public static string OpenWeatherMapKey = "ENTER_WEATHER_KEY";
+        public static string ApplicationURL = @"https://survivalbox.azurewebsites.net";
+        public static string OpenWeatherMapKey = "4546680634a96ebb829fc2f7178423a5";
     }
 }
