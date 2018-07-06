@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using SurvivalBox.ViewModels;
+using Xamarin.Forms;
 
 namespace SurvivalBox.Views
 {
@@ -7,6 +8,8 @@ namespace SurvivalBox.Views
         public MainTracker()
         {
             InitializeComponent();
+            var vm = (MainTrackerViewModel) BindingContext;
+            vm.TrackerMap = TrackerMap;
         }
     }
 }

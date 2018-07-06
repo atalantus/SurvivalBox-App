@@ -16,6 +16,8 @@ namespace DataParser
         private float trueVelocity;
         private float knotVelocity;
 
+        public string TimeString => GetTime();
+
         /// <summary>
         /// Creates a new GPSData object.
         /// </summary>
@@ -33,6 +35,11 @@ namespace DataParser
 
         public GPSData()
         {
+        }
+
+        public string GetTime()
+        {
+            return time.ToUniversalTime().ToString("g");
         }
 
 
