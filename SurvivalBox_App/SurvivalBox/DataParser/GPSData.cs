@@ -9,7 +9,7 @@ namespace DataParser
     /// <summary>
     /// GPSData-Object containing Position, Time, Velocity and KnotVelocity from GPS-Data using an NMEA formatted message.
     /// </summary>
-    class GPSData
+    public class GPSData
     {
         private GPSPosition position;
         private DateTime time;
@@ -116,7 +116,7 @@ namespace DataParser
         }
     }
 
-    struct GPSPosition
+    public struct GPSPosition
     {
         Coordinate latitude;
         Coordinate longitude;
@@ -128,12 +128,12 @@ namespace DataParser
         }
     }
 
-    enum CoordinateDirection
+    public enum CoordinateDirection
     {
         N, E, S, W
     }
 
-    struct Coordinate
+    public struct Coordinate
     {
         float value;
         CoordinateDirection direction;

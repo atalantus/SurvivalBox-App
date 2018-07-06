@@ -41,6 +41,7 @@ namespace SurvivalBox
             containerRegistry.RegisterForNavigation<MainSettings>();
             containerRegistry.RegisterForNavigation<MainHome>();
             containerRegistry.RegisterForNavigation<MainWeather>();
+            containerRegistry.RegisterForNavigation<MainTracker>();
         }
     }
 }
