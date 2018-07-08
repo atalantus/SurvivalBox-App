@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Globalization;
 using Newtonsoft.Json;
 
@@ -51,7 +52,7 @@ namespace SurvivalBox.Models
         public void CalculateDataTime(ref string data, string unixTime)
         {
             var dataTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            data = dataTime.AddSeconds(double.Parse(unixTime)).ToString(CultureInfo.CurrentCulture);
+            data = dataTime.AddSeconds(double.Parse(unixTime)).ToLocalTime().ToString(CultureInfo.CurrentCulture);
         }
     }
 
@@ -199,7 +200,7 @@ namespace SurvivalBox.Models
         private void CalculateSunStateTime(ref string sunState, string unixTime)
         {
             var sunStateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            sunState = sunStateTime.AddSeconds(double.Parse(unixTime)).ToString(CultureInfo.CurrentCulture);
+            sunState = sunStateTime.AddSeconds(double.Parse(unixTime)).ToLocalTime().ToString(CultureInfo.CurrentCulture);
         }
     }
 

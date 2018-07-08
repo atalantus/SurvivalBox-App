@@ -14,15 +14,32 @@
     </ContentPage>
 
     <ContentPage Title="Data">
-        <ListView ItemsSource="GPSData">
+        <ListView ItemsSource="{Binding GPSData}" HasUnevenRows="True">
             <ListView.Header>
                 <Label Text="Data" Style="{DynamicResource TitleStyle}"></Label>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="0,5,0,5">
-                        <Label Text="{Binding TimeString}"></Label>
-                    </Grid>
+                    <ViewCell>
+                        <Grid Padding="10,5,10,5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Style="{DynamicResource SubtitleStyle}" Text="{Binding PositionString}" HorizontalTextAlignment="Start"></Label>
+                                <Label Grid.Column="1" Style="{DynamicResource SubtitleStyle}" Text="{Binding TimeString}" HorizontalTextAlignment="End"></Label>
+                            </Grid>
+
+                            <Label Grid.Row="1" Style="{DynamicResource SubtitleStyle}" Text="{Binding TrueVelocityString}" HorizontalTextAlignment="Start"></Label>
+                        </Grid>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

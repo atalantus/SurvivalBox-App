@@ -159,7 +159,7 @@ namespace SurvivalBox.ViewModels
         {
             using (new ActivityIndicatorScope(this, true))
             {
-                _manager = await Task.Run(() => TodoItemManager.Instance);
+                _manager = TodoItemManager.Instance;
                 // Set syncItems to true in order to synchronize the data on startup when running in offline mode
                 TodoItems = await _manager.GetTodoItemsAsync(true);
             }

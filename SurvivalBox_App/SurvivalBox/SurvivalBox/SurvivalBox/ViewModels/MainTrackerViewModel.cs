@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using DataParser;
 using Prism.Mvvm;
 using Xamarin.Forms.Maps;
@@ -18,7 +19,12 @@ namespace SurvivalBox.ViewModels
 
         public MainTrackerViewModel()
         {
-            
+            GPSData = new ObservableCollection<GPSData>()
+            {
+                new GPSData(new GPSPosition(new Coordinate(37, CoordinateDirection.E), new Coordinate(-122, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(4, 4, 2, 12)), 22, 32),
+                new GPSData(new GPSPosition(new Coordinate(45, CoordinateDirection.N), new Coordinate(2, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
+                new GPSData(new GPSPosition(new Coordinate(234, CoordinateDirection.W), new Coordinate(25, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
+            };
         }
 
         public void StartTrackerMap()

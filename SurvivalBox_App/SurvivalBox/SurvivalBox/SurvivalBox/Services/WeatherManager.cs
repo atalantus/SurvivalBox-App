@@ -18,7 +18,7 @@ namespace SurvivalBox.Services
             // TODO: Make location selectable
             Debug.WriteLine("Imperial: " + imperialUnits);
             var queryString =
-                $"http://api.openweathermap.org/data/2.5/weather?lat=48.137&lon=11.576&APPID={Constants.OpenWeatherMapKey}&units={(imperialUnits ? "imperial" : "metric")}";
+                $"http://api.openweathermap.org/data/2.5/weather?lat=48.064220&lon=11.680739&APPID={Constants.OpenWeatherMapKey}&units={(imperialUnits ? "imperial" : "metric")}";
             var weather = await DataService.GetJSONData<Weather>(queryString).ConfigureAwait(false);
 
             return weather;

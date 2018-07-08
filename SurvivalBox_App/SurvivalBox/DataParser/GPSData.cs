@@ -16,7 +16,9 @@ namespace DataParser
         private float trueVelocity;
         private float knotVelocity;
 
-        public string TimeString => GetTime();
+        public string TimeString => GetTime() + " (UTC)";
+        public string PositionString => $"Coordinates: {position.latitude.value}, {position.longitude.value}";
+        public string TrueVelocityString => $"Velocity: {trueVelocity.ToString()}";
 
         /// <summary>
         /// Creates a new GPSData object.
@@ -125,8 +127,8 @@ namespace DataParser
 
     public struct GPSPosition
     {
-        Coordinate latitude;
-        Coordinate longitude;
+        public Coordinate latitude;
+        public Coordinate longitude;
 
         public GPSPosition(Coordinate lat, Coordinate lon)
         {
@@ -142,8 +144,8 @@ namespace DataParser
 
     public struct Coordinate
     {
-        float value;
-        CoordinateDirection direction;
+        public float value;
+        public CoordinateDirection direction;
 
         public Coordinate(float v, CoordinateDirection d)
         {

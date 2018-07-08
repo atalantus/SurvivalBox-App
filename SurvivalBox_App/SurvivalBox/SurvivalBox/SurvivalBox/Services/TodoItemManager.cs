@@ -39,18 +39,28 @@ namespace SurvivalBox.Services
                                     .Where(todoItem => !todoItem.Done)
                                     .ToEnumerableAsync();
 
-                Debug.WriteLine(new List<TodoItem>(items).Count);
                 return new ObservableCollection<TodoItem>(items);
             }
             catch (MobileServiceInvalidOperationException msioe)
             {
                 Debug.WriteLine(@"Invalid sync operation: {0}", msioe.Message);
+
+                IEnumerable<TodoItem> items = await _todoTable
+                    .Where(todoItem => !todoItem.Done)
+                    .ToEnumerableAsync();
+
+                return new ObservableCollection<TodoItem>(items);
             }
             catch (Exception e)
             {
                 Debug.WriteLine(@"Sync error: {0}", e.Message);
+
+                IEnumerable<TodoItem> items = await _todoTable
+                    .Where(todoItem => !todoItem.Done)
+                    .ToEnumerableAsync();
+
+                return new ObservableCollection<TodoItem>(items);
             }
-            return null;
         }
 
         public async Task SaveTaskAsync(TodoItem item)
@@ -59,11 +69,13 @@ namespace SurvivalBox.Services
             {
                 Debug.WriteLine("New Item");
                 await _todoTable.InsertAsync(item);
+                await SyncAsync();
             }
             else
             {
                 Debug.WriteLine("Update Item");
                 await _todoTable.UpdateAsync(item);
+                await SyncAsync();
             }
         }
 

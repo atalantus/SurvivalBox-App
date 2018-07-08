@@ -27,6 +27,9 @@ namespace SurvivalBox.Models
         [JsonProperty(PropertyName = "complete")]
         public bool Done { get; set; }
 
+        [JsonProperty(PropertyName = "deleted")]
+        public bool Deleted { get; set; }
+
         [JsonProperty(PropertyName = "state")]
         public States CurState { get; set; }
 
@@ -67,7 +70,7 @@ namespace SurvivalBox.Models
             {
                 if (!CancelTimer)
                 {
-                    Debug.WriteLine($"Now: {DateTime.UtcNow.ToString("T")} | Start: {StartDate.ToUniversalTime().ToString("T")}");
+                    // Debug.WriteLine($"Now: {DateTime.UtcNow:T} | Start: {StartDate.ToUniversalTime():T}");
                     var time = DateTime.UtcNow - StartDate.ToUniversalTime();
                     _duration = time.ToString(@"hh\:mm\:ss");
                     UpdatedTimer?.Invoke(this, _duration);

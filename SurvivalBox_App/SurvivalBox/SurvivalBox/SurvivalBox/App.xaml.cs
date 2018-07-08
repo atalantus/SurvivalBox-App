@@ -24,7 +24,7 @@ namespace SurvivalBox
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("Main");
+            await NavigationService.NavigateAsync("WelcomeCarousel");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -42,6 +42,7 @@ namespace SurvivalBox
             containerRegistry.RegisterForNavigation<MainHome>();
             containerRegistry.RegisterForNavigation<MainWeather>();
             containerRegistry.RegisterForNavigation<MainTracker>();
+            containerRegistry.RegisterForNavigation<CreateSession>();
         }
     }
 }

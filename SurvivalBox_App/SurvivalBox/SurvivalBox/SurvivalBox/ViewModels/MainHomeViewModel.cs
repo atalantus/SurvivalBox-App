@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using Prism.Navigation;
 using Prism.Services;
 using SurvivalBox.Models;
 using SurvivalBox.Services;
@@ -16,6 +17,7 @@ namespace SurvivalBox.ViewModels
     {
         #region Fields
 
+        private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
 
         public DelegateCommand ControlSessionCommand { get; set; }
@@ -87,8 +89,9 @@ namespace SurvivalBox.ViewModels
 
         #endregion
 
-        public MainHomeViewModel(IPageDialogService dialogService)
+        public MainHomeViewModel(INavigationService navigationService, IPageDialogService dialogService)
         {
+            _navigationService = navigationService;
             _dialogService = dialogService;
 
             AddWarningCommand = new DelegateCommand(AddWarning);
@@ -112,16 +115,7 @@ namespace SurvivalBox.ViewModels
             if (SessionManager.Instance.CurSession == null)
             {
                 // Start new
-                var sampleName = "Session01";
-                var newSession = new Session() { Name = sampleName, StartDate = DateTime.UtcNow };
-                await SessionManager.Instance.CreateSession(newSession);
-                SessionStatus = "END";
-                SessionBackgroundColor = Color.IndianRed;
-                SessionInfoLabelBig = sampleName;
-                TimerIsVisible = true;
-                SessionInfoLabelSmall = "00:00:00";
-                SessionManager.Instance.CurSession.UpdatedTimer += On_TimerChanged;
-                SessionManager.Instance.CurSession.StartSessionTimer();
+                await _navigationService.NavigateAsync("CreateSession");
             }
             else
             {
@@ -133,6 +127,7 @@ namespace SurvivalBox.ViewModels
 
                 SessionManager.Instance.CurSession.UpdatedTimer -= On_TimerChanged;
                 await SessionManager.Instance.EndSession();
+                LoadOldSessions();
             }
         }
 
@@ -164,17 +159,11 @@ namespace SurvivalBox.ViewModels
             SessionInfoLabelSmall = time;
         }
 
-        private void LoadOldSessions()
+        private async void LoadOldSessions()
         {
-            //TODO: Load old sessions from database
-
-            OldSessions = new ObservableCollection<Session>()
-            {
-                new Session() {Name = "Mount Everest", StartDate = new DateTime(2017, 04, 02)},
-                new Session() {Name = "K2", StartDate = new DateTime(2015, 08, 21)},
-                new Session() {Name = "Kangchenjunga", StartDate = new DateTime(2008, 01, 01)},
-                new Session() {Name = "Lhotse", StartDate = new DateTime(2005, 09, 28)}
-            };
+            var items = await SessionManager.Instance.GetSessionsAsync(true, true);
+            items = new ObservableCollection<Session>(items.Reverse());
+            OldSessions = items;
         }
     }
 }
