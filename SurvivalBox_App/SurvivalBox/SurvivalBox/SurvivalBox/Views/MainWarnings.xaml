@@ -5,7 +5,9 @@
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SurvivalBox.Views.MainWarnings"
-             x:Name="Page">
+             x:Name="Page"
+             Title="Warnings">
+
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

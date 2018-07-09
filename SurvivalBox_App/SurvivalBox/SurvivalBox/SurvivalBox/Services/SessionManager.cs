@@ -22,7 +22,7 @@ namespace SurvivalBox.Services
         private SessionManager()
         {
             Debug.WriteLine("Initializing SessionManager");
-            _serverConnection = ServerConnection.DefaultConnection;
+            _serverConnection = ServerConnection.SessionConnection;
             Debug.WriteLine("Referenced Server Connection");
             _serverConnection.Client.SyncContext.InitializeAsync(_serverConnection.LocalDatabase);
             Debug.WriteLine("Synced local database");

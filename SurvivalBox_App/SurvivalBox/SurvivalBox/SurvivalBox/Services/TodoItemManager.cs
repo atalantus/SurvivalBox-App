@@ -20,11 +20,12 @@ namespace SurvivalBox.Services
         private TodoItemManager()
         {  
             Debug.WriteLine("Initializing TodoItemManager");
-            _serverConnection = ServerConnection.DefaultConnection;
+            _serverConnection = ServerConnection.TodoItemConnection;
             Debug.WriteLine("Referenced Server Connection");
             _serverConnection.Client.SyncContext.InitializeAsync(_serverConnection.LocalDatabase);
             Debug.WriteLine("Synced local database");
             _todoTable = _serverConnection.Client.GetSyncTable<TodoItem>();
+            Debug.WriteLine(_todoTable.TableName);
         }
 
         public async Task<ObservableCollection<TodoItem>> GetTodoItemsAsync(bool syncItems = false)
@@ -85,13 +86,16 @@ namespace SurvivalBox.Services
 
             try
             {
+                Debug.WriteLine("Pushing Items");
                 await _serverConnection.Client.SyncContext.PushAsync();
-
+                Debug.WriteLine("Pushed Items!");
+                Debug.WriteLine("Pulling Items");
                 await _todoTable.PullAsync(
                     //The first parameter is a query name that is used internally by the client SDK to implement incremental sync.
                     //Use a different query name for each unique query in your program
                     "allTodoItems",
                     _todoTable.CreateQuery());
+                Debug.WriteLine("Pulled Items!");
             }
             catch (MobileServicePushFailedException exc)
             {

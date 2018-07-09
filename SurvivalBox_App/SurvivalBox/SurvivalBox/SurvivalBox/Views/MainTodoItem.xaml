@@ -5,7 +5,8 @@
              xmlns:b="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="SurvivalBox.Views.MainTodoItem"
-             x:Name="Page">
+             x:Name="Page"
+             Title="Todo Items">
 
     <Grid RowSpacing="0">
         <Grid.RowDefinitions>

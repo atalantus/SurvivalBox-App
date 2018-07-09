@@ -98,8 +98,6 @@ namespace SurvivalBox.ViewModels
             ControlSessionCommand = new DelegateCommand(ControlSession);
             RequestHelpCommand = new DelegateCommand(RequestHelp);
 
-            var connection = ServerConnection.DefaultConnection;
-
             LoadCurSession();
             LoadOldSessions();
         }

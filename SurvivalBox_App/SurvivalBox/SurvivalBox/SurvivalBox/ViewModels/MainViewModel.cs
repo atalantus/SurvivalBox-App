@@ -59,7 +59,7 @@ namespace SurvivalBox.ViewModels
 	        MenuItems = new ObservableCollection<MenuItem>(new[]
 	        {
                 new MenuItem { Id = 0, Title = "Home", IconSource = "home_icon.png", ViewName = "MainHome"},
-	            new MenuItem { Id = 2, Title = "Tracker", IconSource = "location_icon.png", ViewName = "MainTracker"},
+	            new MenuItem { Id = 2, Title = "GPS-Tracker", IconSource = "location_icon.png", ViewName = "MainTracker"},
                 new MenuItem { Id = 3, Title = "Todo Items", IconSource = "location_icon.png", ViewName = "MainTodoItem"},
 	            new MenuItem { Id = 4, Title = "Weather", IconSource = "weather_icon.png", ViewName = "MainWeather"},
                 new MenuItem { Id = 5, Title = "Settings", IconSource = "settings_icon.png", ViewName = "MainSettings"}

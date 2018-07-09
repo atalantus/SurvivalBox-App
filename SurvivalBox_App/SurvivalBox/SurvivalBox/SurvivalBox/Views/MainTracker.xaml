@@ -4,7 +4,8 @@
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
             prism:ViewModelLocator.AutowireViewModel="True"
-            x:Class="SurvivalBox.Views.MainTracker">
+            x:Class="SurvivalBox.Views.MainTracker"
+            Title="GPS-Tracker">
 
     <ContentPage Title="Map">
         <maps:Map WidthRequest="320" HeightRequest="200"
@@ -14,14 +15,14 @@
     </ContentPage>
 
     <ContentPage Title="Data">
-        <ListView ItemsSource="{Binding GPSData}" HasUnevenRows="True">
+        <ListView ItemsSource="{Binding GPSData}" HasUnevenRows="True" Margin="0,15,0,0">
             <ListView.Header>
-                <Label Text="Data" Style="{DynamicResource TitleStyle}"></Label>
+                <Label Text="GPS-Data" Style="{DynamicResource TitleStyle}" Margin="15,0,0,15"></Label>
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Padding="10,5,10,5">
+                        <Grid Padding="15,5,15,5">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition Height="Auto"></RowDefinition>

@@ -8,7 +8,6 @@
 
             <!-- PrimaryBtn -->
             <Style x:Key="PrimaryBtn" TargetType="Button">
-                <Setter Property="FontSize" Value="20"></Setter>
                 <Setter Property="BackgroundColor" Value="Accent"></Setter>
             </Style>
 
