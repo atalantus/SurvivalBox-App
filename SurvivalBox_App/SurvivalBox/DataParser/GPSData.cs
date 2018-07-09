@@ -11,10 +11,10 @@ namespace DataParser
     /// </summary>
     public class GPSData
     {
-        private GPSPosition position;
-        private DateTime time;
-        private float trueVelocity;
-        private float knotVelocity;
+        public GPSPosition position;
+        public DateTime time;
+        public float trueVelocity;
+        public float knotVelocity;
 
         public string TimeString => GetTime() + " (UTC)";
         public string PositionString => $"Coordinates: {position.latitude.value}, {position.longitude.value}";

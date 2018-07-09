@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.WindowsAzure.MobileServices;
 using Newtonsoft.Json;
+using Xamarin.Forms.Maps;
 
 namespace SurvivalBox.Models
 {
@@ -26,5 +27,22 @@ namespace SurvivalBox.Models
 
         [Version]
         public string Version { get; set; }
+
+        [JsonIgnore]
+        public Position Position => new Position(Latitude, Longitude);
+
+        [JsonIgnore]
+        public string Label => CreationDate.ToLocalTime().ToString("g") + " (UTC)";
+
+        [JsonIgnore] public string Address => $"Velocity: {Velocity:0.0}";
+
+        public GPSData(double latitude, double longitude, double velocity, DateTime creationDate)
+        {
+            CreationDate = creationDate;
+            Longitude = longitude;
+            Latitude = latitude;
+        }
+
+        public GPSData() { }
     }
 }

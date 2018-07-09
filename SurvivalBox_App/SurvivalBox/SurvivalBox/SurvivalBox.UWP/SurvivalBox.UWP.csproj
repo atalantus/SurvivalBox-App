@@ -97,6 +97,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrackerMapRenderer.cs" />
     <Compile Include="UWP_Keys.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -147,6 +148,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="home_icon.png" />
     <Content Include="location_icon.png" />
+    <Content Include="map_pin_icon.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

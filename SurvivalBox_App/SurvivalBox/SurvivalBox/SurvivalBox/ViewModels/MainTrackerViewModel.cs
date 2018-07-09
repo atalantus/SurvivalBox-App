@@ -6,6 +6,7 @@ using DataParser;
 using Prism.Commands;
 using Prism.Mvvm;
 using SurvivalBox.Models;
+using SurvivalBox.Services;
 using Xamarin.Forms.Maps;
 using GPSData = DataParser.GPSData;
 
@@ -13,7 +14,7 @@ namespace SurvivalBox.ViewModels
 {
     public class MainTrackerViewModel : BindableBase
     {
-        public Map TrackerMap { get; set; }
+        public TrackerMap TrackerMap { get; set; }
 
         private ObservableCollection<GPSData> _gpsData;
         public ObservableCollection<GPSData> GPSData
@@ -35,9 +36,15 @@ namespace SurvivalBox.ViewModels
         {
             GPSData = new ObservableCollection<GPSData>()
             {
-                new GPSData(new GPSPosition(new Coordinate(37, CoordinateDirection.E), new Coordinate(-122, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(4, 4, 2, 12)), 22, 32),
-                new GPSData(new GPSPosition(new Coordinate(45, CoordinateDirection.N), new Coordinate(2, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
-                new GPSData(new GPSPosition(new Coordinate(234, CoordinateDirection.W), new Coordinate(25, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
+                new GPSData(new GPSPosition(new Coordinate(37.797534f, CoordinateDirection.E), new Coordinate(-122.401827f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(4, 4, 2, 12)), 22, 32),
+                new GPSData(new GPSPosition(new Coordinate(37.797510f, CoordinateDirection.N), new Coordinate(-122.402060f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
+                new GPSData(new GPSPosition(new Coordinate(37.790269f, CoordinateDirection.W), new Coordinate(-122.400589f, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
+                new GPSData(new GPSPosition(new Coordinate(37.790265f, CoordinateDirection.E), new Coordinate(-122.400474f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(4, 4, 2, 12)), 22, 32),
+                new GPSData(new GPSPosition(new Coordinate(37.790228f, CoordinateDirection.N), new Coordinate(-122.400391f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
+                new GPSData(new GPSPosition(new Coordinate(37.790126f, CoordinateDirection.W), new Coordinate(-122.400360f, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
+                new GPSData(new GPSPosition(new Coordinate(37.789250f, CoordinateDirection.E), new Coordinate(-122.401451f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(4, 4, 2, 12)), 22, 32),
+                new GPSData(new GPSPosition(new Coordinate(37.788440f, CoordinateDirection.N), new Coordinate(-122.400396f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
+                new GPSData(new GPSPosition(new Coordinate(37.787999f, CoordinateDirection.W), new Coordinate(-122.399780f, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
             };
 
             MapType = MapType.Street;
@@ -45,18 +52,12 @@ namespace SurvivalBox.ViewModels
 
         public void StartTrackerMap()
         {
-            var position = new Position(37, -122); // Latitude, Longitude
-            var pin = new Pin
+            foreach (var gpsData in GPSData)
             {
-                Type = PinType.SavedPin,
-                Position = position,
-                Label = "custom pin",
-                Address = "custom detail info"
-            };
-            TrackerMap.Pins.Add(pin);
-            TrackerMap.MoveToRegion(
-                MapSpan.FromCenterAndRadius(
-                    new Position(37, -122), Distance.FromMiles(1)));
+                TrackerMap.RouteCoordinates.Add(new Models.GPSData(gpsData.position.latitude.value, gpsData.position.longitude.value, gpsData.trueVelocity, gpsData.time));
+            }
+
+            TrackerMap.MoveToRegion(MapSpan.FromCenterAndRadius(TrackerMap.RouteCoordinates.Last().Position, Distance.FromMiles(1.0)));
         }
     }
 }
