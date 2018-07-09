@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Microsoft.WindowsAzure.MobileServices.SQLiteStore;
 using SurvivalBox.Models;
@@ -8,46 +10,41 @@ namespace SurvivalBox.Services
 {
     public class ServerConnection
     {
-        private enum Services
-        {
-            TODO_ITEM,
-            SESSION,
-            ACCOUNT
-        }
+        private static ServerConnection _defaultConnection;
+        public static ServerConnection DefaultConnection => _defaultConnection ?? (_defaultConnection = new ServerConnection());
 
-        private static ServerConnection _sessionConnection;
-        private static ServerConnection _todoItemConnection;
-        public static ServerConnection SessionConnection => _sessionConnection ?? (_sessionConnection = new ServerConnection(Services.SESSION));
-        public static ServerConnection TodoItemConnection => _todoItemConnection ?? (_todoItemConnection = new ServerConnection(Services.TODO_ITEM));
+        public MobileServiceClient Client { get; }
 
-        private MobileServiceClient _client;
-        public MobileServiceClient Client => _client;
-        public MobileServiceSQLiteStore LocalDatabase { get; set; }
+        public MobileServiceSQLiteStore Database { get; set; }
 
-        private ServerConnection(Services service)
+        private ServerConnection()
         {
             Debug.WriteLine("Connecting to Server...");
-            _client = new MobileServiceClient(Constants.ApplicationURL);
+            Client = new MobileServiceClient(Constants.ApplicationURL);
             Debug.WriteLine("Created Client");
+        }
 
-            switch (service)
+        public async void InitializeDatabaseAsync()
+        {
+            try
             {
-                case Services.SESSION:
-                    LocalDatabase = new MobileServiceSQLiteStore("survivalBox_session.db");
-                    LocalDatabase.DefineTable<Session>();
-                    break;
-                case Services.TODO_ITEM:
-                    LocalDatabase = new MobileServiceSQLiteStore("survivalBox_todoItem.db");
-                    LocalDatabase.DefineTable<TodoItem>();
-                    break;
-                case Services.ACCOUNT:
-                    LocalDatabase = new MobileServiceSQLiteStore("survivalBox_account.db");
-                    break;
+                Database = new MobileServiceSQLiteStore("survivalBox.db");
+                Debug.WriteLine("Created Database!");
+                Database.DefineTable<Session>();
+                Debug.WriteLine("Created Session table");
+                Database.DefineTable<TodoItem>();
+                Debug.WriteLine("Created TodoItem table");
+                Database.DefineTable<GPSData>();
+                Debug.WriteLine("Created GPSData table");
+                Debug.WriteLine("Client: " + Client);
+                Debug.WriteLine("Database: " + Database);
+                await Client.SyncContext.InitializeAsync(Database);
+                Debug.WriteLine("Synced database!");
             }
-
-            Debug.WriteLine("Created local database");           
-            Debug.WriteLine("Created TodoItem table");            
-            Debug.WriteLine("Created Session table");
+            catch (Exception e)
+            {
+                Debug.WriteLine("Initialize Database failed: {0}", e.Message);
+            }
         }
     }
 }

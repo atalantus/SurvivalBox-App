@@ -24,29 +24,34 @@
             <Label Text="{Binding SessionInfoLabelBig}" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center"></Label>
             <Label IsVisible="{Binding TimerIsVisible}" Text="{Binding SessionInfoLabelSmall}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="Center"></Label>
 
-            <Button Margin="0,25,0,0" Text="REQUEST HELP!" HorizontalOptions="Center" BackgroundColor="DarkRed" TextColor="White" Command="{Binding RequestHelpCommand}"></Button>
+            <!--<Button Margin="0,25,0,0" Text="REQUEST HELP!" HorizontalOptions="Center" BackgroundColor="DarkRed" TextColor="White" Command="{Binding RequestHelpCommand}"></Button>-->
 
-            <ListView HasUnevenRows="True" Margin="0,15,0,0" ItemsSource="{Binding OldSessions}">
-                <ListView.Header>
-                    <Label Text="Old Sessions" Style="{DynamicResource TitleStyle}"></Label>
-                </ListView.Header>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Grid Padding="10,10,10,10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
+            <Grid Margin="0,15,0,0">
 
-                                <Label Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="Start"></Label>
-                                <Label Grid.Column="1" Text="{Binding StartDateString}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="End"></Label>
-                            </Grid>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Start" Margin="0,75,0,0" IsVisible="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsRunning="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsEnabled="True" />
+
+                <ListView HasUnevenRows="True" ItemsSource="{Binding OldSessions}">
+                    <ListView.Header>
+                        <Label Text="Old Sessions" Style="{DynamicResource TitleStyle}"></Label>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Padding="10,10,10,10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Text="{Binding Name}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="Start"></Label>
+                                    <Label Grid.Column="1" Text="{Binding StartDateString}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="End"></Label>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
         </StackLayout>
     </ScrollView>
 

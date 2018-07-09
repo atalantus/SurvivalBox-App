@@ -14,16 +14,13 @@ namespace SurvivalBox.Services
     {
         private static TodoItemManager _instance;
         public static TodoItemManager Instance => _instance ?? (_instance = new TodoItemManager());
-        private ServerConnection _serverConnection;
-        private IMobileServiceSyncTable<TodoItem> _todoTable;
+        private readonly ServerConnection _serverConnection;
+        private readonly IMobileServiceSyncTable<TodoItem> _todoTable;
 
         private TodoItemManager()
         {  
             Debug.WriteLine("Initializing TodoItemManager");
-            _serverConnection = ServerConnection.TodoItemConnection;
-            Debug.WriteLine("Referenced Server Connection");
-            _serverConnection.Client.SyncContext.InitializeAsync(_serverConnection.LocalDatabase);
-            Debug.WriteLine("Synced local database");
+            _serverConnection = ServerConnection.DefaultConnection;
             _todoTable = _serverConnection.Client.GetSyncTable<TodoItem>();
             Debug.WriteLine(_todoTable.TableName);
         }

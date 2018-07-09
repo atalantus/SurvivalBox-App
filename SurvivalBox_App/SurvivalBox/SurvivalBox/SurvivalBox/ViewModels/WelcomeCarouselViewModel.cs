@@ -16,6 +16,7 @@ namespace SurvivalBox.ViewModels
 
         public WelcomeCarouselViewModel(INavigationService navigationService)
         {
+            Debug.WriteLine("WelcomeCarousel");
             _navigationService = navigationService;
 
             GetStartedCommand = new DelegateCommand(GetStarted);

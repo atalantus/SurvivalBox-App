@@ -7,8 +7,6 @@
              Title="Create Session">
     <StackLayout Padding="20,10,20,50">
 
-        <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsRunning="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsEnabled="True" />
-
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
@@ -28,7 +26,8 @@
             </Grid>
         </Grid>
 
-        <Button Text="Create" VerticalOptions="End" Command="{Binding CreateSessionCommand}" Style="{StaticResource PrimaryBtn}" HorizontalOptions="Center"/>
+        <Button Text="Create" VerticalOptions="End" Command="{Binding CreateSessionCommand}" Style="{StaticResource PrimaryBtn}" HorizontalOptions="Center" Margin="0,0,0,50"/>
 
+        <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" IsVisible="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsRunning="{Binding ActivityIndicatorIsActive, Mode=TwoWay}" IsEnabled="True" />
     </StackLayout>
 </ContentPage>

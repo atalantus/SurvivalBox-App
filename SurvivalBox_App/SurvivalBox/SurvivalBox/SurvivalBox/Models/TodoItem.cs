@@ -5,30 +5,14 @@ namespace SurvivalBox.Models
 {
     public class TodoItem
     {
-        string id;
-        string name;
-        bool done;
-
         [JsonProperty(PropertyName = "id")]
-        public string Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        public string Id { get; set; }
 
         [JsonProperty(PropertyName = "text")]
-        public string Name
-        {
-            get { return name; }
-            set { name = value; }
-        }
+        public string Name { get; set; }
 
         [JsonProperty(PropertyName = "complete")]
-        public bool Done
-        {
-            get { return done; }
-            set { done = value; }
-        }
+        public bool Done { get; set; }
 
         [Version]
         public string Version { get; set; }

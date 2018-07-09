@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace SurvivalBox.ViewModels
 {
-    public class MainHomeViewModel : BindableBase
+    public class MainHomeViewModel : ActivityIndicatorViewModelBase
     {
         #region Fields
 
@@ -159,12 +159,17 @@ namespace SurvivalBox.ViewModels
 
         private async void LoadOldSessions()
         {
-            var items = await SessionManager.Instance.GetSessionsAsync(true, true);
-            items = new ObservableCollection<Session>(items.Reverse());
-            OldSessions = items;
+            using (new ActivityIndicatorScope(this, true))
+            {
+                var items = await SessionManager.Instance.GetSessionsAsync(true, true);
+                items = new ObservableCollection<Session>(items.Reverse());
+                OldSessions = items;
+            }
+        }
+
+        protected override void OnRefresh()
+        {
+            LoadOldSessions();
         }
     }
 }
-
-
-

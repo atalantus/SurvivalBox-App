@@ -159,16 +159,12 @@ namespace DataParser
             {
                 case "N":
                     return CoordinateDirection.N;
-                    break;
                 case "E":
                     return CoordinateDirection.E;
-                    break;
                 case "S":
                     return CoordinateDirection.S;
-                    break;
                 case "W":
                     return CoordinateDirection.W;
-                    break;
             }
             throw new Exception($"Invalid CoordinateDirection '{m}'");
         }

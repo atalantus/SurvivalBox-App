@@ -1,10 +1,14 @@
-﻿using Prism;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
+using Prism;
 using Prism.Ioc;
 using SurvivalBox.ViewModels;
 using SurvivalBox.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
+using SurvivalBox.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace SurvivalBox
@@ -24,6 +28,9 @@ namespace SurvivalBox
         {
             InitializeComponent();
 
+            Debug.WriteLine("Initializind Database");
+            ServerConnection.DefaultConnection.InitializeDatabaseAsync();
+            Debug.WriteLine("Initialized Database successfully");
             await NavigationService.NavigateAsync("WelcomeCarousel");
         }
 

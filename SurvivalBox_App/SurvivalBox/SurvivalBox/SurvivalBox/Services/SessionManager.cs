@@ -14,19 +14,17 @@ namespace SurvivalBox.Services
     {
         private static SessionManager _instance;
         public static SessionManager Instance => _instance ?? (_instance = new SessionManager());
-        private ServerConnection _serverConnection;
-        private IMobileServiceSyncTable<Session> _sessionTable;
+        private readonly ServerConnection _serverConnection;
+        private readonly IMobileServiceSyncTable<Session> _sessionTable;
 
         public Session CurSession { get; set; }
 
         private SessionManager()
         {
             Debug.WriteLine("Initializing SessionManager");
-            _serverConnection = ServerConnection.SessionConnection;
-            Debug.WriteLine("Referenced Server Connection");
-            _serverConnection.Client.SyncContext.InitializeAsync(_serverConnection.LocalDatabase);
-            Debug.WriteLine("Synced local database");
+            _serverConnection = ServerConnection.DefaultConnection;
             _sessionTable = _serverConnection.Client.GetSyncTable<Session>();
+            Debug.WriteLine(_sessionTable.TableName);
         }
 
         public async Task CreateSession(Session session)
