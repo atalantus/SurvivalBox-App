@@ -3,8 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="SurvivalBox.Views.WelcomeCarousel">
-    <ContentPage>
+             x:Class="SurvivalBox.Views.WelcomeCarousel"
+             Title="Welcome to SurvivalBox">
+
+    <ContentPage Title="Welcome to SurvivalBox">
         <StackLayout Padding="20,10,20,50">
             <StackLayout VerticalOptions="StartAndExpand">
                 <Label Style="{DynamicResource TitleStyle}" Margin="0,0,0,25" HorizontalTextAlignment="Center">App info 1</Label>
@@ -13,7 +15,7 @@
         </StackLayout>
     </ContentPage>
 
-    <ContentPage>
+    <ContentPage Title="Welcome to SurvivalBox">
         <StackLayout Padding="20,10,20,50">
             <StackLayout VerticalOptions="StartAndExpand">
                 <Label Style="{DynamicResource TitleStyle}" Margin="0,0,0,25" HorizontalTextAlignment="Center">App info 2</Label>
@@ -22,7 +24,7 @@
         </StackLayout>
     </ContentPage>
 
-    <ContentPage>
+    <ContentPage Title="Welcome to SurvivalBox">
         <StackLayout Padding="20,10,20,50">
             <StackLayout VerticalOptions="StartAndExpand">
                 <Label Style="{DynamicResource TitleStyle}" Margin="0,0,0,25" HorizontalTextAlignment="Center">App info 3</Label>

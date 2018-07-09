@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using DataParser;
+using Prism.Commands;
 using Prism.Mvvm;
+using SurvivalBox.Models;
 using Xamarin.Forms.Maps;
+using GPSData = DataParser.GPSData;
 
 namespace SurvivalBox.ViewModels
 {
@@ -17,6 +22,15 @@ namespace SurvivalBox.ViewModels
             set => SetProperty(ref _gpsData, value);
         }
 
+        private MapType _mapType = MapType.Hybrid;
+        public MapType MapType
+        {
+            get => _mapType;
+            set => SetProperty(ref _mapType, value);
+        }
+
+        public List<string> MapTypeItems => Enum.GetNames(typeof(MapType)).ToList();
+
         public MainTrackerViewModel()
         {
             GPSData = new ObservableCollection<GPSData>()
@@ -25,6 +39,8 @@ namespace SurvivalBox.ViewModels
                 new GPSData(new GPSPosition(new Coordinate(45, CoordinateDirection.N), new Coordinate(2, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
                 new GPSData(new GPSPosition(new Coordinate(234, CoordinateDirection.W), new Coordinate(25, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
             };
+
+            MapType = MapType.Street;
         }
 
         public void StartTrackerMap()

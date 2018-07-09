@@ -20,7 +20,7 @@
                 <Label Grid.Row="1" Style="{DynamicResource SubtitleStyle}" TextColor="White" Text="{Binding InfoBodyText}"></Label>
             </Grid>
 
-            <Button Margin="0,15,0,0" Text="{Binding SessionStatus}" BackgroundColor="{Binding SessionBackgroundColor}" Command="{Binding ControlSessionCommand}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="125" WidthRequest="175"></Button>
+            <Button Margin="0,15,0,0" FontSize="Large" FontAttributes="Bold" Text="{Binding SessionStatus}" BackgroundColor="{Binding SessionBackgroundColor}" Command="{Binding ControlSessionCommand}" VerticalOptions="Center" HorizontalOptions="Center" HeightRequest="125" WidthRequest="175"></Button>
             <Label Text="{Binding SessionInfoLabelBig}" Style="{DynamicResource TitleStyle}" HorizontalTextAlignment="Center"></Label>
             <Label IsVisible="{Binding TimerIsVisible}" Text="{Binding SessionInfoLabelSmall}" Style="{DynamicResource SubtitleStyle}" HorizontalTextAlignment="Center"></Label>
 

@@ -3,15 +3,38 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+            xmlns:services="clr-namespace:SurvivalBox.Services;assembly=SurvivalBox"
+            xmlns:local="clr-namespace:SurvivalBox;assembly=SurvivalBox"
+            xmlns:services1="clr-namespace:SurvivalBox.Services"
             prism:ViewModelLocator.AutowireViewModel="True"
             x:Class="SurvivalBox.Views.MainTracker"
             Title="GPS-Tracker">
 
     <ContentPage Title="Map">
-        <maps:Map WidthRequest="320" HeightRequest="200"
-                  x:Name="TrackerMap"
-                  MapType="Hybrid"
-        />
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <services1:IntEnumConverter x:Key="IntEnum"/>
+            </ResourceDictionary>
+        </ContentPage.Resources>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0" Padding="20,10,20,10" BackgroundColor="LightGray">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <Label Grid.Column="0" Style="{DynamicResource SubtitleStyle}" Text="Map Type:" VerticalOptions="Center" VerticalTextAlignment="Center" HorizontalOptions="End"></Label>
+                <Picker Grid.Column="1" HorizontalOptions="End" Title="Map Type" ItemsSource="{Binding MapTypeItems}" SelectedIndex="{Binding MapType, Converter={StaticResource IntEnum}, Mode=TwoWay}"></Picker>
+            </Grid>
+
+            <services:TrackerMap Grid.Row="1" MapType="{Binding MapType, Mode=TwoWay}" x:Name="TrackerMap" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+        </Grid>
+
     </ContentPage>
 
     <ContentPage Title="Data">
