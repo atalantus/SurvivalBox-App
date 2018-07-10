@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Prism;
 using Prism.Ioc;
+using SurvivalBox.Droid.Services;
 using SurvivalBox.Services;
 using Debug = System.Diagnostics.Debug;
 

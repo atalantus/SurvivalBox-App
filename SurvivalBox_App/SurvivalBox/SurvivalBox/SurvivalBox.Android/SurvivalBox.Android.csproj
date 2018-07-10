@@ -83,6 +83,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\BluetoothConnection_Android.cs" />
     <Compile Include="TrackerMapRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
@@ -104,6 +105,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\DataParser\DataParser.csproj">
+      <Project>{bfae359e-121f-4908-ae1b-882a1962706f}</Project>
+      <Name>DataParser</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SurvivalBox\SurvivalBox.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>SurvivalBox</Name>
