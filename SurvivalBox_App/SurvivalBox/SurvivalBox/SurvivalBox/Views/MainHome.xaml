@@ -8,7 +8,7 @@
 
     <ScrollView>
         <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Padding="20,10,20,0">
-            <Button Text="Add Warning" Command="{Binding AddWarningCommand}" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Accent"></Button>
+            <Button Text="Add Sample Warning" Command="{Binding AddWarningCommand}" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="Accent"></Button>
 
             <Grid WidthRequest="200" BackgroundColor="Red" Padding="15,10,15,10" IsVisible="{Binding WarningIsVisible}">
                 <Grid.RowDefinitions>

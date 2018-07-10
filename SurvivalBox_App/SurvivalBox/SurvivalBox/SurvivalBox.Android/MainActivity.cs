@@ -14,9 +14,9 @@ namespace SurvivalBox.Droid
     [Activity(Label = "SurvivalBox", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
-        private static readonly int REQUEST_ENABLE_BT = 1;
-        public BluetoothAdapter BluetoothAdapter;
-        public bool BluetoothEnabled;
+        //private static readonly int REQUEST_ENABLE_BT = 1;
+        //public BluetoothAdapter BluetoothAdapter;
+        //public bool BluetoothEnabled;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -30,35 +30,35 @@ namespace SurvivalBox.Droid
             LoadApplication(new App(new AndroidInitializer()));
         }
 
-        public void RequestBluetoothConnection()
-        {
-            Debug.WriteLine("RequestBluetooth Android");
-            BluetoothAdapter = BluetoothAdapter.DefaultAdapter;
+        //public void RequestBluetoothConnection()
+        //{
+        //    Debug.WriteLine("RequestBluetooth Android");
+        //    BluetoothAdapter = BluetoothAdapter.DefaultAdapter;
 
-            if (!BluetoothAdapter.IsEnabled)
-            {
-                Debug.WriteLine("Request Bluetooth from user");
-                var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
-                StartActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-            }
-            else
-            {
-                Debug.WriteLine("Request Bluetooth: Bluetooth enabled");
-                BluetoothEnabled = true;
-            }
-        }
+        //    if (!BluetoothAdapter.IsEnabled)
+        //    {
+        //        Debug.WriteLine("Request Bluetooth from user");
+        //        var enableBtIntent = new Intent(BluetoothAdapter.ActionRequestEnable);
+        //        StartActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+        //    }
+        //    else
+        //    {
+        //        Debug.WriteLine("Request Bluetooth: Bluetooth enabled");
+        //        BluetoothEnabled = true;
+        //    }
+        //}
 
-        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
-        {
-            base.OnActivityResult(requestCode, resultCode, data);
+        //protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        //{
+        //    base.OnActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == REQUEST_ENABLE_BT)
-            {
-                // Bluetooth enable request handler
-                BluetoothEnabled = resultCode == Result.Ok;
-                Debug.WriteLine("Bluetooth enabled: " + BluetoothEnabled);
-            }
-        }
+        //    if (requestCode == REQUEST_ENABLE_BT)
+        //    {
+        //        // Bluetooth enable request handler
+        //        BluetoothEnabled = resultCode == Result.Ok;
+        //        Debug.WriteLine("Bluetooth enabled: " + BluetoothEnabled);
+        //    }
+        //}
     }
 
     public class AndroidInitializer : IPlatformInitializer
@@ -66,7 +66,7 @@ namespace SurvivalBox.Droid
         public void RegisterTypes(IContainerRegistry container)
         {
             // Register any platform specific implementations
-            container.Register<IBluetoothConnection, BluetoothConnection_Android>();
+            //container.Register<IBluetoothConnection, BluetoothConnection_Android>();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace SurvivalBox.ViewModels
 
         public List<string> MapTypeItems => Enum.GetNames(typeof(MapType)).ToList();
 
-        private BoxConnection _boxConnection;
+        //private BoxConnection _boxConnection;
 
         public MainTrackerViewModel(IPageDialogService dialogService)
         {
@@ -46,43 +46,43 @@ namespace SurvivalBox.ViewModels
 
             GPSData = new ObservableCollection<GPSDataRaw>()
             {
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.797534f, CoordinateDirection.E), new Coordinate(-122.401827f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(4, 4, 2, 12)), 22, 32),
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.797510f, CoordinateDirection.N), new Coordinate(-122.402060f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.790269f, CoordinateDirection.W), new Coordinate(-122.400589f, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.790265f, CoordinateDirection.E), new Coordinate(-122.400474f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(4, 4, 2, 12)), 22, 32),
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.790228f, CoordinateDirection.N), new Coordinate(-122.400391f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.790126f, CoordinateDirection.W), new Coordinate(-122.400360f, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.789250f, CoordinateDirection.E), new Coordinate(-122.401451f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(4, 4, 2, 12)), 22, 32),
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.788440f, CoordinateDirection.N), new Coordinate(-122.400396f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 2, 1, 12)), 1, 15),
-                new GPSDataRaw(new GPSPosition(new Coordinate(37.787999f, CoordinateDirection.W), new Coordinate(-122.399780f, CoordinateDirection.W)), DateTime.UtcNow, 255, 3212),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.797534f, CoordinateDirection.E), new Coordinate(-122.401827f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 27, 0)), 8.9f, 32),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.797510f, CoordinateDirection.N), new Coordinate(-122.402060f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 25, 22)), 7.6f, 15),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.790269f, CoordinateDirection.W), new Coordinate(-122.400589f, CoordinateDirection.W)), DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 18, 23)), 5.2f, 3212),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.790265f, CoordinateDirection.E), new Coordinate(-122.400474f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 16, 12)), 4.9f, 32),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.790228f, CoordinateDirection.N), new Coordinate(-122.400391f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 15, 2)), 9.4f, 15),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.790126f, CoordinateDirection.W), new Coordinate(-122.400360f, CoordinateDirection.W)), DateTime.UtcNow.Subtract(new TimeSpan(0,0,9,0)), 7.1f, 3212),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.789250f, CoordinateDirection.E), new Coordinate(-122.401451f, CoordinateDirection.N)), DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 6, 2)), 6.5f, 32),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.788440f, CoordinateDirection.N), new Coordinate(-122.400396f, CoordinateDirection.S)), DateTime.UtcNow.Subtract(new TimeSpan(0, 0, 3, 12)), 5.3f, 15),
+                new GPSDataRaw(new GPSPosition(new Coordinate(37.787999f, CoordinateDirection.W), new Coordinate(-122.399780f, CoordinateDirection.W)), DateTime.UtcNow, 7.2f, 9f),
             };
 
             MapType = MapType.Hybrid;
         }
 
-        public void RequestBluetooth()
-        {
-            // Check for device
-            _boxConnection = BoxConnection.Instance;
+        //public void RequestBluetooth()
+        //{
+        //    // Check for device
+        //    _boxConnection = BoxConnection.Instance;
 
-            switch (_boxConnection.GetBluetoothStatus())
-            {
-                case BluetoothStatus.CONNECTED:
-                    _dialogService.DisplayAlertAsync("Bluetooth connection successful",
-                        "You connected successfully to a Bluetooth device!", "OK");
-                    break;
-                case BluetoothStatus.NOT_SUPPORTED:
-                    _dialogService.DisplayAlertAsync("Bluetooth connection failed",
-                        "Looks like your device doesn't support Bluetooth!", "OK");
-                    break;
-                case BluetoothStatus.NOT_ENABLED:
-                    _dialogService.DisplayAlertAsync("Bluetooth connection failed",
-                        "Connect to your SurvivalBox via Bluetooth in order to track your GPS-Position!", "OK");
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-        }
+        //    switch (_boxConnection.GetBluetoothStatus())
+        //    {
+        //        case BluetoothStatus.CONNECTED:
+        //            _dialogService.DisplayAlertAsync("Bluetooth connection successful",
+        //                "You connected successfully to a Bluetooth device!", "OK");
+        //            break;
+        //        case BluetoothStatus.NOT_SUPPORTED:
+        //            _dialogService.DisplayAlertAsync("Bluetooth connection failed",
+        //                "Looks like your device doesn't support Bluetooth!", "OK");
+        //            break;
+        //        case BluetoothStatus.NOT_ENABLED:
+        //            _dialogService.DisplayAlertAsync("Bluetooth connection failed",
+        //                "Connect to your SurvivalBox via Bluetooth in order to track your GPS-Position!", "OK");
+        //            break;
+        //        default:
+        //            throw new ArgumentOutOfRangeException();
+        //    }
+        //}
 
         public void StartTrackerMap()
         {
@@ -91,17 +91,17 @@ namespace SurvivalBox.ViewModels
                 TrackerMap.RouteCoordinates.Add(new GPSData(gpsData.position.latitude.value, gpsData.position.longitude.value, gpsData.trueVelocity, gpsData.time));
             }
 
-            TrackerMap.MoveToRegion(MapSpan.FromCenterAndRadius(TrackerMap.RouteCoordinates.Last().Position, Distance.FromMiles(1.0)));
+            TrackerMap.MoveToRegion(MapSpan.FromCenterAndRadius(TrackerMap.RouteCoordinates.Last().Position, Distance.FromMiles(0.1)));
         }
 
         public void OnAppearing()
         {
-            RequestBluetooth();
+            //RequestBluetooth();
         }
 
         public void OnDisappearing()
         {
-            throw new NotImplementedException();
+
         }
     }
 }

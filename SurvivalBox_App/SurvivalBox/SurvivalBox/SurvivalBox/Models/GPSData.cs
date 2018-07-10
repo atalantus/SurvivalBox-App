@@ -34,13 +34,14 @@ namespace SurvivalBox.Models
         [JsonIgnore]
         public string Label => CreationDate.ToLocalTime().ToString("g") + " (UTC)";
 
-        [JsonIgnore] public string Address => $"Velocity: {Velocity:0.0}";
+        [JsonIgnore] public string Address => $"Velocity: {Velocity:##.0}";
 
         public GPSData(double latitude, double longitude, double velocity, DateTime creationDate)
         {
             CreationDate = creationDate;
             Longitude = longitude;
             Latitude = latitude;
+            Velocity = velocity;
         }
 
         public GPSData() { }

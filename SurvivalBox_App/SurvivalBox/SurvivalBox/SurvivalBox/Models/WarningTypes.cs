@@ -4,6 +4,6 @@
     {
         SIGNAL_LOST,
         DEHYDRATION,
-
+        DOWNPOUR
     }
 }

@@ -9,7 +9,7 @@ namespace SurvivalBox.Views
         {
             InitializeComponent();
             var vm = (MainTrackerViewModel) BindingContext;
-            vm.TrackerMap = TrackerMap;
+            vm.TrackerMap = TrackerMapElement;
             vm.StartTrackerMap();
         }
     }

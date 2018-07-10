@@ -105,7 +105,7 @@ namespace SurvivalBox.ViewModels
         // HACK
         private void AddWarning()
         {
-            WarningManager.Instance.AddWarning(new Warning(WarningTypes.DEHYDRATION, "Title", "Warning sample message! Lorem Ipsum blabla bla.", 1));
+            WarningManager.Instance.AddWarning(new Warning(WarningTypes.DOWNPOUR, "DOWNPOUR", "There is a 90% possibility that there will be strong downpour near you in the next minutes!\nStay aware of slippery ground and falling rocks!\nLook for a save place and wait until it's over.", 1));
         }
 
         private async void ControlSession()

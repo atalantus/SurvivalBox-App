@@ -46,8 +46,8 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <Label Grid.Column="0" Text="{Binding Title}" Style="{DynamicResource TitleStyle}"></Label>
-                                <Button Grid.Column="1" HorizontalOptions="End" VerticalOptions="Start" Text="Delete" BackgroundColor="OrangeRed" TextColor="White" Command="{Binding Path=BindingContext.DeleteWarningCommand, Source={x:Reference Page}}" CommandParameter="{Binding .}"></Button>
+                                <Label Grid.Column="0" Text="{Binding Title}" Style="{DynamicResource TitleStyle}" VerticalOptions="Center" VerticalTextAlignment="Center"></Label>
+                                <Button Grid.Column="1" HorizontalOptions="End" VerticalOptions="Start" Text="Dismiss" BackgroundColor="OrangeRed" TextColor="White" Command="{Binding Path=BindingContext.DeleteWarningCommand, Source={x:Reference Page}}" CommandParameter="{Binding .}"></Button>
                             </Grid>
 
                             <Label Grid.Row="1" Text="{Binding Message}" Style="{DynamicResource SubtitleStyle}"></Label>

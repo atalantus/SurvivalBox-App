@@ -32,13 +32,13 @@
                 <Picker Grid.Column="1" HorizontalOptions="End" Title="Map Type" ItemsSource="{Binding MapTypeItems}" SelectedIndex="{Binding MapType, Converter={StaticResource IntEnum}, Mode=TwoWay}"></Picker>
             </Grid>
 
-            <services:TrackerMap Grid.Row="1" MapType="{Binding MapType, Mode=TwoWay}" x:Name="TrackerMap" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            <services:TrackerMap Grid.Row="1" MapType="{Binding MapType, Mode=TwoWay}" x:Name="TrackerMapElement" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
         </Grid>
 
     </ContentPage>
 
     <ContentPage Title="Data">
-        <ListView ItemsSource="{Binding GPSData}" HasUnevenRows="True" Margin="0,15,0,0">
+        <ListView ItemsSource="{Binding GPSData}" HasUnevenRows="True">
             <ListView.Header>
                 <Label Text="GPS-Data" Style="{DynamicResource TitleStyle}" Margin="15,0,0,15"></Label>
             </ListView.Header>

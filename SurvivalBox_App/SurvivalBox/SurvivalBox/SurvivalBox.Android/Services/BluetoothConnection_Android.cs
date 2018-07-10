@@ -21,17 +21,18 @@ namespace SurvivalBox.Droid.Services
 
         public void RequestBluetoothConnection()
         {
-            _activity.RequestBluetoothConnection();
+            //_activity.RequestBluetoothConnection();
         }
 
         public BluetoothStatus IsConnected()
         {
-            if (_activity.BluetoothAdapter == null)
-                return BluetoothStatus.NOT_SUPPORTED;
-            else if (!_activity.BluetoothEnabled)
-                return BluetoothStatus.NOT_ENABLED;
-            else
-                return BluetoothStatus.CONNECTED;
+            //if (_activity.BluetoothAdapter == null)
+            //    return BluetoothStatus.NOT_SUPPORTED;
+            //else if (!_activity.BluetoothEnabled)
+            //    return BluetoothStatus.NOT_ENABLED;
+            //else
+            //    return BluetoothStatus.CONNECTED;
+            throw new System.NotImplementedException();
         }
 
         public GPSDataRaw GetGPSData()
