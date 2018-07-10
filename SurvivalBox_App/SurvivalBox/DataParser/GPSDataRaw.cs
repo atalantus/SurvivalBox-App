@@ -9,7 +9,7 @@ namespace DataParser
     /// <summary>
     /// GPSData-Object containing Position, Time, Velocity and KnotVelocity from GPS-Data using an NMEA formatted message.
     /// </summary>
-    public class GPSData
+    public class GPSDataRaw
     {
         public GPSPosition position;
         public DateTime time;
@@ -27,7 +27,7 @@ namespace DataParser
         /// <param name="time"></param>
         /// <param name="trueVelocity"></param>
         /// <param name="knotVelocity"></param>
-        public GPSData(GPSPosition position, DateTime time, float trueVelocity, float knotVelocity)
+        public GPSDataRaw(GPSPosition position, DateTime time, float trueVelocity, float knotVelocity)
         {
             this.position = position;
             this.time = time;
@@ -35,7 +35,7 @@ namespace DataParser
             this.knotVelocity = knotVelocity;
         }
 
-        public GPSData()
+        public GPSDataRaw()
         {
         }
 
@@ -88,7 +88,7 @@ namespace DataParser
         /// </summary>
         /// <param name="message">The input data string starting with $GPRMC</param>
         /// <returns>New GPSData-Object.</returns>
-        public static GPSData GetGPRMCObject(string message)
+        public static GPSDataRaw GetGPRMCObject(string message)
         {
             string[] data = message.Split(',');
             GPSPosition position = new GPSPosition(
@@ -121,7 +121,7 @@ namespace DataParser
             float trueVelocity = float.Parse(data[8]);
             float knotVelocity = float.Parse(data[9]);
 
-            return new GPSData(position, time, trueVelocity, knotVelocity);
+            return new GPSDataRaw(position, time, trueVelocity, knotVelocity);
         }
     }
 
