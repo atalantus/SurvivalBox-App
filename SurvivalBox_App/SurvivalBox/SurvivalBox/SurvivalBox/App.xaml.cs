@@ -31,7 +31,7 @@ namespace SurvivalBox
             Debug.WriteLine("Initializind Database");
             ServerConnection.DefaultConnection.InitializeDatabaseAsync();
             Debug.WriteLine("Initialized Database successfully");
-            await NavigationService.NavigateAsync("Main");
+            await NavigationService.NavigateAsync("WelcomeCarousel");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

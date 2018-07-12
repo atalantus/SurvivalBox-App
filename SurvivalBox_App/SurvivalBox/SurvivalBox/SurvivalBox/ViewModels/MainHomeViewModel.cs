@@ -103,9 +103,15 @@ namespace SurvivalBox.ViewModels
         }
 
         // HACK
+        private bool tsdfalkd;
         private void AddWarning()
         {
-            WarningManager.Instance.AddWarning(new Warning(WarningTypes.DOWNPOUR, "DOWNPOUR", "There is a 90% possibility that there will be strong downpour near you in the next minutes!\nStay aware of slippery ground and falling rocks!\nLook for a save place and wait until it's over.", 1));
+            if (!tsdfalkd)
+                WarningManager.Instance.AddWarning(new Warning(WarningTypes.DOWNPOUR, "DOWNPOUR", "There is a 90% possibility that there will be strong downpour near you in the next minutes!\nStay aware of slippery ground and falling rocks!\nLook for a save place and wait until it's over.", 1));
+            else
+                WarningManager.Instance.AddWarning(new Warning(WarningTypes.SIGNAL_LOST, "RAPID HEIGHT DROP", "Your SurvivalBox registered a rapid height drop!\nIf you fell please wait some minutes and really check yourself before getting up again!\nIf you're hurt badly don't hesitate and call for help immediately!", 6));
+
+            tsdfalkd = !tsdfalkd;
         }
 
         private async void ControlSession()
